@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Documentación de MilcaTrussPy">
+    <title>Documentación MilcaTrussPy | Amilcar Machacca Mayo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="project-page">
+    <header class="project-header">
+        <a href="proyecto-milcatrusspy.html" class="back-link">
+            <svg class="back-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="15 18 9 12 15 6"/>
+            </svg>
+            Volver a MilcaTrussPy
+        </a>
+    </header>
+
+    <main class="project-main">
+        <article class="documentation">
+            <div class="doc-content">
+                <h1>Documentación de MilcaTrussPy</h1>
+                
+                <div id="markdown-content" class="markdown-body">
+                    <p class="loading-text">Cargando documentación...</p>
+                </div>
+
+                <noscript>
+                    <div class="markdown-body">
+                        <h2>MilcaTrussPy</h2>
+                        <p>Herramienta de Python para análisis de armaduras con visualización 3D.</p>
+                        
+                        <h3>Instalación</h3>
+                        <pre><code>pip install milcatrusspy</code></pre>
+                        
+                        <h3>Uso Básico</h3>
+                        <pre><code>from milcatrusspy import Truss
+
+# Crear armadura
+t = Truss()
+
+# Definir nodos
+t.add_node(0, 0, 0)
+t.add_node(4, 0, 0)
+t.add_node(2, 2, 0)
+
+# Definir elementos
+t.add_member(0, 1)
+t.add_member(1, 2)
+t.add_member(2, 0)
+
+# Aplicar cargas y resolver
+t.apply_load(2, [0, -10, 0])
+t.solve()
+
+# Visualizar
+t.plot_3d()</code></pre>
+                        
+                        <h3>Características</h3>
+                        <ul>
+                            <li>Análisis de armaduras 2D y 3D</li>
+                            <li>Visualización interactiva de deformaciones</li>
+                            <li>Cálculo de fuerzas axiales</li>
+                            <li>Exportación de resultados</li>
+                        </ul>
+
+                        <p>Para más información, visita el <a href="https://github.com/amachacca/milcatrusspy" target="_blank">repositorio en GitHub</a>.</p>
+                    </div>
+                </noscript>
+            </div>
+        </article>
+    </main>
+
+    <footer class="project-footer">
+        <p>© 2025 Amilcar Machacca Mayo. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        async function loadReadme() {
+            const container = document.getElementById('markdown-content');
+            try {
+                const response = await fetch('https://api.github.com/repos/amachacca/milcatrusspy/readme', {
+                    headers: {
+                        'Accept': 'application/vnd.github.html+json'
+                    }
+                });
+                
+                if (response.ok) {
+                    const html = await response.text();
+                    container.innerHTML = html;
+                } else {
+                    throw new Error('No se pudo cargar');
+                }
+            } catch (error) {
+                container.innerHTML = `
+                    <h2>MilcaTrussPy</h2>
+                    <p>Herramienta de Python para análisis de armaduras con visualización 3D.</p>
+                    
+                    <h3>Instalación</h3>
+                    <pre><code>pip install milcatrusspy</code></pre>
+                    
+                    <h3>Uso Básico</h3>
+                    <pre><code>from milcatrusspy import Truss
+
+# Crear armadura
+t = Truss()
+
+# Definir nodos
+t.add_node(0, 0, 0)
+t.add_node(4, 0, 0)
+t.add_node(2, 2, 0)
+
+# Definir elementos
+t.add_member(0, 1)
+t.add_member(1, 2)
+t.add_member(2, 0)
+
+# Aplicar cargas y resolver
+t.apply_load(2, [0, -10, 0])
+t.solve()
+
+# Visualizar
+t.plot_3d()</code></pre>
+                    
+                    <h3>Características</h3>
+                    <ul>
+                        <li>Análisis de armaduras 2D y 3D</li>
+                        <li>Visualización interactiva de deformaciones</li>
+                        <li>Cálculo de fuerzas axiales</li>
+                        <li>Exportación de resultados</li>
+                    </ul>
+
+                    <p>Para más información, visita el <a href="https://github.com/amachacca/milcatrusspy" target="_blank">repositorio en GitHub</a>.</p>
+                `;
+            }
+        }
+        
+        loadReadme();
+    </script>
+</body>
+</html>

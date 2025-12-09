@@ -1,28 +1,369 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <!-- Updated meta description and title -->
+    <meta name="description" content="Portafolio de Amilcar Machacca Mayo - Ingeniero Civil | FEM">
+    <title>Amilcar Machacca Mayo | Ingeniero Civil</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-    <h1>hola</h1>
-    <p>soy un parrafo</p>
-    <a href="https://google.com">google</a>
-    <img src="https://google.com/favicon.ico" alt="google">
-    <ul>
-        <li>elemento 1</li>
-        <li>elemento 2</li>
-        <li>elemento 3</li>
-    </ul>
-    <ol>
-        <li>elemento 1</li>
-        <li>elemento 2</li>
-        <li>elemento 3</li>
-    </ol>
+    <!-- Mobile Header -->
+    <header class="mobile-header">
+        <div class="mobile-header-content">
+            <div class="mobile-profile">
+                <!-- Updated profile image and name -->
+                <img src="https://avatars.githubusercontent.com/u/166049998?s=400&u=7e85d208fb6f78e43b06eb11c653da99a7ff1de0&v=4" alt="Amilcar Machacca Mayo" class="mobile-avatar">
+                <span class="mobile-name">Amilcar Machacca</span>
+            </div>
+            <button class="menu-toggle" aria-label="Abrir menú">
+                <span class="hamburger"></span>
+            </button>
+        </div>
+    </header>
 
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-content">
+            <div class="profile">
+                <!-- Updated profile image and info -->
+                <img src="https://avatars.githubusercontent.com/u/166049998?s=400&u=7e85d208fb6f78e43b06eb11c653da99a7ff1de0&v=4" alt="Amilcar Machacca Mayo" class="avatar">
+                <div>
+                    <h1 class="name">Amilcar Machacca Mayo</h1>
+                    <p class="title">Ingeniero Civil | FEM</p>
+                </div>
+            </div>
+
+            <nav class="nav">
+                <a href="#home" class="nav-link active" data-section="home">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                    </svg>
+                    Inicio
+                </a>
+                <a href="#about" class="nav-link" data-section="about">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 16v-4M12 8h.01"/>
+                    </svg>
+                    Sobre Mí
+                </a>
+                <a href="#projects" class="nav-link" data-section="projects">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    Proyectos
+                </a>
+                <a href="#articles" class="nav-link" data-section="articles">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14 2 14 8 20 8"/>
+                        <line x1="16" y1="13" x2="8" y2="13"/>
+                        <line x1="16" y1="17" x2="8" y2="17"/>
+                        <polyline points="10 9 9 9 8 9"/>
+                    </svg>
+                    Artículos
+                </a>
+                <a href="#contact" class="nav-link" data-section="contact">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                        <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                    Contacto
+                </a>
+            </nav>
+
+            <!-- Updated socials section with new links -->
+            <div class="socials">
+                <h3 class="socials-title">Redes</h3>
+                <a href="https://www.linkedin.com/in/amachacca/" target="_blank" rel="noopener noreferrer" class="social-link">
+                    <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                        <rect x="2" y="9" width="4" height="12"/>
+                        <circle cx="4" cy="4" r="2"/>
+                    </svg>
+                    LinkedIn
+                </a>
+                <a href="https://github.com/amachacca" target="_blank" rel="noopener noreferrer" class="social-link">
+                    <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                    </svg>
+                    GitHub
+                </a>
+                <a href="https://www.youtube.com/@amachacca" target="_blank" rel="noopener noreferrer" class="social-link">
+                    <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/>
+                        <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/>
+                    </svg>
+                    YouTube
+                </a>
+                <a href="https://www.tiktok.com/@amachacca" target="_blank" rel="noopener noreferrer" class="social-link">
+                    <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
+                    </svg>
+                    TikTok
+                </a>
+                <a href="https://www.facebook.com/consultoria.constructora.milca" target="_blank" rel="noopener noreferrer" class="social-link">
+                    <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                    </svg>
+                    Facebook
+                </a>
+                <a href="https://linktr.ee/amachacca" target="_blank" rel="noopener noreferrer" class="social-link">
+                    <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                    </svg>
+                    Más Enlaces
+                </a>
+            </div>
+
+            <!-- Removed resume button -->
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Home Section -->
+        <section id="home" class="section active">
+            <div class="section-content">
+                <span class="wave">👋</span>
+                <!-- Updated hero content -->
+                <h2 class="hero-title">¡Hola! Soy Amilcar</h2>
+                <p class="hero-subtitle">
+                    Soy un <strong>Ingeniero Civil</strong> apasionado por el análisis estructural, 
+                    la simulación FEM y el diseño asistido por computadora.
+                </p>
+                <p class="hero-description">
+                    Especializado en crear soluciones eficientes y precisas que integran 
+                    <strong>ciencia, diseño y funcionalidad</strong> en el ámbito estructural.
+                </p>
+                <!-- Removed "What I've been working on" section -->
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <div class="section-content">
+                <h2 class="section-title">Sobre Mí</h2>
+                <!-- Updated about content in Spanish -->
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>
+                            ¡Hola! Soy <strong>Amilcar Machacca Mayo</strong>, ingeniero civil apasionado por el 
+                            análisis estructural, la simulación mediante el Método de Elementos Finitos (FEM) 
+                            y el diseño asistido por computadora.
+                        </p>
+                        <p>
+                            Desde los inicios de mi carrera, me ha fascinado la capacidad de unir matemáticas, 
+                            ingeniería y tecnología para resolver problemas del mundo real. Mi objetivo es crear 
+                            soluciones eficientes, precisas y modernas que integren ciencia, diseño y funcionalidad.
+                        </p>
+                        <p>
+                            A lo largo de mi trayectoria he trabajado con diversas herramientas de ingeniería, 
+                            automatización y desarrollo técnico, creando proyectos que optimizan procesos y 
+                            mejoran la eficiencia en el ámbito estructural.
+                        </p>
+                        <p>
+                            Este espacio es una forma de compartir mis conocimientos, experiencias y proyectos 
+                            contigo. <strong>Bienvenido a mi mundo entre estructuras, código y creatividad.</strong>
+                        </p>
+                    </div>
+                    <div class="skills">
+                        <!-- Updated technologies -->
+                        <h3 class="skills-title">Tecnologías</h3>
+                        <div class="skills-grid">
+                            <div class="skill-item">SAP2000</div>
+                            <div class="skill-item">ETABS</div>
+                            <div class="skill-item">REVIT</div>
+                            <div class="skill-item">PYTHON</div>
+                            <div class="skill-item">VS CODE</div>
+                            <div class="skill-item">MATHCAD</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section">
+            <div class="section-content">
+                <h2 class="section-title">Proyectos</h2>
+                <p class="section-intro">Aquí están algunos de los proyectos en los que he trabajado.</p>
+                <!-- Updated projects with MilcaPy and MilcaTrussPy -->
+                <div class="projects-grid">
+                    <!-- MilcaPy Project -->
+                    <a href="proyecto-milcapy.html" class="project-card-full project-link-card">
+                        <div class="project-image">
+                            <img src="https://github.com/amachacca/MilcaStructures/blob/main/assets/logo.png?raw=true" alt="MilcaPy">
+                        </div>
+                        <div class="project-info">
+                            <h3 class="project-title">MilcaPy</h3>
+                            <p class="project-description">
+                                Librería de Python para análisis estructural. Herramientas computacionales 
+                                para ingenieros civiles que facilitan el cálculo y diseño de estructuras.
+                            </p>
+                            <div class="project-tags">
+                                <span class="tag">Python</span>
+                                <span class="tag">FEM</span>
+                                <span class="tag">Estructuras</span>
+                            </div>
+                            <div class="project-links">
+                                <span class="project-link-text">Ver detalles →</span>
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <!-- MilcaTrussPy Project -->
+                    <a href="proyecto-milcatrusspy.html" class="project-card-full project-link-card">
+                        <div class="project-image">
+                            <img src="https://github.com/amachacca/milcatrusspy/blob/main/img/ico.png?raw=true" alt="MilcaTrussPy">
+                        </div>
+                        <div class="project-info">
+                            <h3 class="project-title">MilcaTrussPy</h3>
+                            <p class="project-description">
+                                Herramienta especializada en análisis de armaduras (cerchas) con visualización 
+                                3D de deformaciones y resultados estructurales.
+                            </p>
+                            <div class="project-tags">
+                                <span class="tag">Python</span>
+                                <span class="tag">3D</span>
+                                <span class="tag">Armaduras</span>
+                            </div>
+                            <div class="project-links">
+                                <span class="project-link-text">Ver detalles →</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Template Project -->
+                    <div class="project-card-full project-template">
+                        <div class="project-image template-placeholder">
+                            <span class="template-icon">+</span>
+                        </div>
+                        <div class="project-info">
+                            <h3 class="project-title">Próximo Proyecto</h3>
+                            <p class="project-description">
+                                Espacio reservado para futuros proyectos. Más herramientas y recursos 
+                                para la comunidad de ingeniería próximamente.
+                            </p>
+                            <div class="project-tags">
+                                <span class="tag">Próximamente</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Articles Section -->
+        <section id="articles" class="section">
+            <div class="section-content">
+                <h2 class="section-title">Artículos</h2>
+                <p class="section-intro">Escribo sobre ingeniería estructural, programación y tecnología.</p>
+                <!-- Updated articles in Spanish with clickable links -->
+                <div class="articles-list">
+                    <a href="articulo-fem.html" class="article-card article-link-card">
+                        <div class="article-meta">
+                            <span class="article-date">Dic 5, 2025</span>
+                            <span class="article-read-time">7 min lectura</span>
+                        </div>
+                        <h3 class="article-title">Introducción al Método de Elementos Finitos (FEM)</h3>
+                        <p class="article-excerpt">
+                            Descubre los fundamentos del análisis por elementos finitos y cómo aplicarlo 
+                            en el diseño estructural moderno.
+                        </p>
+                        <span class="article-link-text">Leer más →</span>
+                    </a>
+                    <a href="articulo-python.html" class="article-card article-link-card">
+                        <div class="article-meta">
+                            <span class="article-date">Nov 20, 2025</span>
+                            <span class="article-read-time">5 min lectura</span>
+                        </div>
+                        <h3 class="article-title">Python para Ingenieros Civiles: Primeros Pasos</h3>
+                        <p class="article-excerpt">
+                            Aprende cómo Python puede automatizar tareas repetitivas y potenciar 
+                            tus cálculos estructurales.
+                        </p>
+                        <span class="article-link-text">Leer más →</span>
+                    </a>
+                    <a href="articulo-sap2000.html" class="article-card article-link-card">
+                        <div class="article-meta">
+                            <span class="article-date">Oct 15, 2025</span>
+                            <span class="article-read-time">6 min lectura</span>
+                        </div>
+                        <h3 class="article-title">Optimización de Modelos en SAP2000</h3>
+                        <p class="article-excerpt">
+                            Técnicas y consejos para crear modelos eficientes en SAP2000 que 
+                            reduzcan tiempo de análisis sin perder precisión.
+                        </p>
+                        <span class="article-link-text">Leer más →</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <div class="section-content">
+                <h2 class="section-title">Contacto</h2>
+                <!-- Replaced form with social buttons -->
+                <p class="section-intro">
+                    ¿Tienes alguna pregunta o proyecto en mente? ¡Conéctate conmigo a través de mis redes sociales!
+                </p>
+                <div class="contact-buttons">
+                    <a href="https://www.linkedin.com/in/amachacca/" target="_blank" rel="noopener noreferrer" class="contact-btn linkedin">
+                        <svg class="contact-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                            <rect x="2" y="9" width="4" height="12"/>
+                            <circle cx="4" cy="4" r="2"/>
+                        </svg>
+                        LinkedIn
+                    </a>
+                    <a href="https://github.com/amachacca" target="_blank" rel="noopener noreferrer" class="contact-btn github">
+                        <svg class="contact-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                        </svg>
+                        GitHub
+                    </a>
+                    <a href="https://www.youtube.com/@amachacca" target="_blank" rel="noopener noreferrer" class="contact-btn youtube">
+                        <svg class="contact-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/>
+                            <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/>
+                        </svg>
+                        YouTube
+                    </a>
+                    <a href="https://www.tiktok.com/@amachacca" target="_blank" rel="noopener noreferrer" class="contact-btn tiktok">
+                        <svg class="contact-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
+                        </svg>
+                        TikTok
+                    </a>
+                    <a href="https://www.facebook.com/consultoria.constructora.milca" target="_blank" rel="noopener noreferrer" class="contact-btn facebook">
+                        <svg class="contact-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                        </svg>
+                        Facebook
+                    </a>
+                    <a href="https://linktr.ee/amachacca" target="_blank" rel="noopener noreferrer" class="contact-btn linktree">
+                        <svg class="contact-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                        </svg>
+                        Todos mis enlaces
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Overlay for mobile menu -->
+    <div class="overlay" id="overlay"></div>
+
+    <script src="script.js"></script>
 </body>
-
 </html>

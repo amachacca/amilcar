@@ -1,0 +1,120 @@
+
+Actualiza mi página web con los siguientes cambios y requisitos:
+
+🌐 Detalles generales
+
+Toda la página web debe estar en idioma español.
+
+Debe ser 100% estática porque se desplegará en GitHub Pages (solo HTML, CSS, JS).
+
+Imagen de perfil:
+https://avatars.githubusercontent.com/u/166049998?s=400&u=7e85d208fb6f78e43b06eb11c653da99a7ff1de0&v=4
+
+Nombre: Amilcar Machacca Mayo
+
+Profesional: Ingeniero Civil | FEM
+
+🏠 HOME
+
+Mantén el layout, pero elimina completamente:
+“What I've been working on” y todo lo que aparece debajo.
+
+👤 ABOUT
+
+Sustituye el contenido actual por una versión en español basada en este texto (mejor redactada):
+
+"Hola, soy Amilcar Machacca Mayo — ingeniero civil apasionado por el análisis estructural, la simulación FEM y el diseño asistido por computadora.
+
+Desde los inicios de mi carrera, me ha fascinado la capacidad de unir matemáticas, ingeniería y tecnología para resolver problemas reales. Mi objetivo es crear soluciones eficientes, precisas y modernas que integren ciencia, diseño y funcionalidad.
+
+A lo largo de mi trayectoria he trabajado con herramientas de ingeniería, automatización y desarrollo técnico, creando proyectos que optimizan procesos y mejoran la eficiencia en el ámbito estructural.
+
+Este espacio es una forma de compartir mis conocimientos, experiencias y proyectos contigo. Bienvenido a mi mundo entre estructuras, código y creatividad."
+
+En la subsección Tecnologías, coloca solo:
+SAP2000, ETABS, REVIT, PYTHON, VS CODE, MATHCAD
+
+📁 PROJECTS
+1. MilcaPy
+
+Link código fuente:
+https://github.com/amachacca/MilcaStructures
+
+Imagen miniatura:
+https://github.com/amachacca/MilcaStructures/blob/main/assets/logo.png?raw=true
+
+Eliminar botón "View Live".
+
+Todo el bloque del proyecto debe ser clickeable y abrir una nueva página HTML con toda la explicación del proyecto.
+
+En esa página:
+
+Mostrar al inicio esta imagen:
+https://github.com/amachacca/MilcaStructures/blob/main/assets/img/%20(6).png?raw=true
+
+Al final poner dos botones:
+
+Ver código en GitHub → mismo link del repositorio
+
+Ver documentación → abrir otra página HTML que muestre un archivo milcapydoc.md
+
+Intentar cargar directamente el markdown desde:
+https://github.com/amachacca/MilcaStructures/blob/main/README.md
+Si no es posible, usar un .md local.
+
+2. MilcaTrussPy
+
+Link código fuente:
+https://github.com/amachacca/milcatrusspy
+
+Miniatura:
+https://github.com/amachacca/milcatrusspy/blob/main/img/ico.png?raw=true
+
+Eliminar "View Live".
+
+Página interna igual que MilcaPy.
+
+Imagen inicial del proyecto:
+https://github.com/amachacca/milcatrusspy/blob/main/img/3d_deformed.png?raw=true
+
+Botones:
+
+GitHub
+
+Ver documentación (leer README.md desde GitHub o usar milcatrusspydoc.md local)
+
+3. Plantilla
+
+Crea una plantilla lista para agregar más proyectos en el futuro con el mismo formato.
+
+📰 ARTÍCULOS
+
+Solo 3 artículos.
+
+Cada artículo debe ser clickeable y abrir una página HTML dedicada.
+
+Genera contenido simple (texto breve) e incluye imágenes de internet.
+
+Añade botón “Leer más” que lleve a la página del artículo.
+
+📬 CONTACTO
+
+Solo colocar botones a mis redes, sin formulario.
+
+🌐 SOCIALS
+
+Reemplaza las redes actuales por estas (con botones):
+
+LinkedIn → https://www.linkedin.com/in/amachacca/
+
+GitHub → https://github.com/amachacca
+
+TikTok → https://www.tiktok.com/@amachacca
+
+Facebook → https://www.facebook.com/consultoria.constructora.milca
+
+Más enlaces → https://linktr.ee/amachacca
+
+YouTube → https://www.youtube.com/@amachacca
+
+Eliminar Twitter
