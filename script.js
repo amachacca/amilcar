@@ -1,9 +1,6 @@
-// DOM Elements
-const menuToggle = document.querySelector(".menu-toggle")
-const sidebar = document.getElementById("sidebar")
-const overlay = document.getElementById("overlay")
-const navLinks = document.querySelectorAll(".nav-link")
-const sections = document.querySelectorAll(".section")
+const navLinks = document.querySelectorAll('.top-nav-menu .nav-link')
+const sections = document.querySelectorAll('.section')
+const logoLink = document.querySelector('.logo-link[data-section]')
 
 const themeToggle = document.getElementById("themeToggle")
 const themeToggleSidebar = document.getElementById("themeToggleSidebar")
