@@ -5,6 +5,38 @@ const overlay = document.getElementById("overlay")
 const navLinks = document.querySelectorAll(".nav-link")
 const sections = document.querySelectorAll(".section")
 
+const themeToggle = document.getElementById("themeToggle")
+const themeToggleSidebar = document.getElementById("themeToggleSidebar")
+const themeStorageKey = "amilcar-theme"
+
+function setTheme(theme) {
+  const isDarkMode = theme === "dark"
+  document.body.classList.toggle("dark-theme", isDarkMode)
+
+  const label = isDarkMode ? "☀️ Tema claro" : "🌙 Tema oscuro"
+  const ariaLabel = isDarkMode ? "Activar tema claro" : "Activar tema oscuro"
+
+  ;[themeToggle, themeToggleSidebar].forEach((button) => {
+    if (!button) return
+
+    button.textContent = button.id === "themeToggleSidebar" ? label : isDarkMode ? "☀️" : "🌙"
+    button.setAttribute("aria-label", ariaLabel)
+  })
+}
+
+function getPreferredTheme() {
+  const storedTheme = localStorage.getItem(themeStorageKey)
+  if (storedTheme === "dark" || storedTheme === "light") return storedTheme
+
+  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
+}
+
+function toggleTheme() {
+  const nextTheme = document.body.classList.contains("dark-theme") ? "light" : "dark"
+  setTheme(nextTheme)
+  localStorage.setItem(themeStorageKey, nextTheme)
+}
+
 function toggleMenu() {
   if (!menuToggle || !sidebar || !overlay) return
 
@@ -70,6 +102,10 @@ function setupSectionObserver() {
 if (menuToggle) menuToggle.addEventListener("click", toggleMenu)
 if (overlay) overlay.addEventListener("click", closeMenu)
 
+;[themeToggle, themeToggleSidebar].forEach((button) => {
+  if (button) button.addEventListener("click", toggleTheme)
+})
+
 navLinks.forEach((link) => {
   link.addEventListener("click", (event) => {
     event.preventDefault()
@@ -84,6 +120,7 @@ window.addEventListener("popstate", () => {
 })
 
 document.addEventListener("DOMContentLoaded", () => {
+  setTheme(getPreferredTheme())
   setupSectionObserver()
 
   const sectionId = window.location.hash.slice(1) || "home"
