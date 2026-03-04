@@ -5,105 +5,130 @@ const overlay = document.getElementById("overlay")
 const navLinks = document.querySelectorAll(".nav-link")
 const sections = document.querySelectorAll(".section")
 
-// Toggle mobile menu
+const themeToggle = document.getElementById("themeToggle")
+const themeToggleSidebar = document.getElementById("themeToggleSidebar")
+const themeStorageKey = "amilcar-theme"
+
+function setTheme(theme) {
+  const isDarkMode = theme === "dark"
+  document.body.classList.toggle("dark-theme", isDarkMode)
+
+  const label = isDarkMode ? "☀️ Tema claro" : "🌙 Tema oscuro"
+  const ariaLabel = isDarkMode ? "Activar tema claro" : "Activar tema oscuro"
+
+  ;[themeToggle, themeToggleSidebar].forEach((button) => {
+    if (!button) return
+
+    button.textContent = button.id === "themeToggleSidebar" ? label : isDarkMode ? "☀️" : "🌙"
+    button.setAttribute("aria-label", ariaLabel)
+  })
+}
+
+function getPreferredTheme() {
+  const storedTheme = localStorage.getItem(themeStorageKey)
+  if (storedTheme === "dark" || storedTheme === "light") return storedTheme
+
+  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
+}
+
+function toggleTheme() {
+  const nextTheme = document.body.classList.contains("dark-theme") ? "light" : "dark"
+  setTheme(nextTheme)
+  localStorage.setItem(themeStorageKey, nextTheme)
+}
+
 function toggleMenu() {
+  if (!menuToggle || !sidebar || !overlay) return
+
   menuToggle.classList.toggle("active")
   sidebar.classList.toggle("active")
   overlay.classList.toggle("active")
   document.body.style.overflow = sidebar.classList.contains("active") ? "hidden" : ""
 }
 
-// Close mobile menu
 function closeMenu() {
+  if (!menuToggle || !sidebar || !overlay) return
+
   menuToggle.classList.remove("active")
   sidebar.classList.remove("active")
   overlay.classList.remove("active")
   document.body.style.overflow = ""
 }
 
-// Show section
-function showSection(sectionId) {
-  // Hide all sections
-  sections.forEach((section) => {
-    section.classList.remove("active")
-  })
-
-  // Show target section
-  const targetSection = document.getElementById(sectionId)
-  if (targetSection) {
-    targetSection.classList.add("active")
-  }
-
-  // Update active nav link
+function setActiveNav(sectionId) {
   navLinks.forEach((link) => {
-    link.classList.remove("active")
-    if (link.dataset.section === sectionId) {
-      link.classList.add("active")
-    }
+    const isActive = link.dataset.section === sectionId
+    link.classList.toggle("active", isActive)
+    link.setAttribute("aria-current", isActive ? "page" : "false")
   })
+}
 
-  // Close mobile menu after navigation
+function scrollToSection(sectionId, { updateHistory = true, behavior = "smooth" } = {}) {
+  const targetSection = document.getElementById(sectionId)
+  if (!targetSection) return
+
+  targetSection.scrollIntoView({ behavior, block: "start" })
+  setActiveNav(sectionId)
+
+  if (updateHistory) {
+    history.pushState(null, "", `#${sectionId}`)
+  }
+
   closeMenu()
-
-  // Scroll to top of section
-  window.scrollTo(0, 0)
 }
 
-// Event Listeners
-if (menuToggle) {
-  menuToggle.addEventListener("click", toggleMenu)
+function setupSectionObserver() {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const visibleEntries = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)
+
+      if (visibleEntries.length > 0) {
+        const activeSectionId = visibleEntries[0].target.id
+        setActiveNav(activeSectionId)
+      }
+    },
+    {
+      root: null,
+      threshold: [0.25, 0.5, 0.75],
+      rootMargin: "-20% 0px -45% 0px",
+    },
+  )
+
+  sections.forEach((section) => observer.observe(section))
 }
 
-if (overlay) {
-  overlay.addEventListener("click", closeMenu)
-}
+if (menuToggle) menuToggle.addEventListener("click", toggleMenu)
+if (overlay) overlay.addEventListener("click", closeMenu)
 
-// Navigation click handler
+;[themeToggle, themeToggleSidebar].forEach((button) => {
+  if (button) button.addEventListener("click", toggleTheme)
+})
+
 navLinks.forEach((link) => {
-  link.addEventListener("click", (e) => {
-    e.preventDefault()
+  link.addEventListener("click", (event) => {
+    event.preventDefault()
     const sectionId = link.dataset.section
-    showSection(sectionId)
-
-    // Update URL hash without scrolling
-    history.pushState(null, null, `#${sectionId}`)
+    if (sectionId) scrollToSection(sectionId)
   })
 })
 
-// Handle browser back/forward buttons
 window.addEventListener("popstate", () => {
-  const hash = window.location.hash.slice(1) || "home"
-  showSection(hash)
+  const sectionId = window.location.hash.slice(1) || "home"
+  scrollToSection(sectionId, { updateHistory: false, behavior: "auto" })
 })
 
-// Initialize on page load
 document.addEventListener("DOMContentLoaded", () => {
-  // Check for hash in URL
-  const hash = window.location.hash.slice(1)
-  if (hash && document.getElementById(hash)) {
-    showSection(hash)
-  } else if (document.getElementById("home")) {
-    showSection("home")
-  }
+  setTheme(getPreferredTheme())
+  setupSectionObserver()
+
+  const sectionId = window.location.hash.slice(1) || "home"
+  scrollToSection(sectionId, { updateHistory: false, behavior: "auto" })
 })
 
-// Handle escape key to close menu
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape" && sidebar && sidebar.classList.contains("active")) {
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && sidebar && sidebar.classList.contains("active")) {
     closeMenu()
-  }
-})
-
-// Smooth scroll for anchor links within sections
-document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-  if (!anchor.classList.contains("nav-link")) {
-    anchor.addEventListener("click", (e) => {
-      const targetId = anchor.getAttribute("href").slice(1)
-      if (document.getElementById(targetId)) {
-        e.preventDefault()
-        showSection(targetId)
-        history.pushState(null, null, `#${targetId}`)
-      }
-    })
   }
 })

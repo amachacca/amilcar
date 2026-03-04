@@ -19,6 +19,15 @@
   --transition: all 0.3s ease;
 }
 
+body.dark-theme {
+  --color-text: #e5e7eb;
+  --color-text-light: #9ca3af;
+  --color-background: #111827;
+  --color-surface: #0f172a;
+  --color-border: #1f2937;
+  --color-hover: #1f2937;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -52,6 +61,12 @@ body {
   padding: 0 1rem;
 }
 
+.mobile-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
 .mobile-profile {
   display: flex;
   align-items: center;
@@ -78,6 +93,27 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.theme-toggle {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  border-radius: 8px;
+  font-size: 0.875rem;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.theme-toggle:hover {
+  background: var(--color-hover);
+}
+
+.theme-toggle-sidebar {
+  width: 100%;
+  margin-bottom: 1rem;
+  text-align: left;
 }
 
 .hamburger {
@@ -281,9 +317,15 @@ body {
 
 /* Sections */
 .section {
-  display: none;
-  padding: 3rem;
+  display: block;
+  padding: 4rem 3rem;
   min-height: 100vh;
+  scroll-margin-top: 1rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.section:last-child {
+  border-bottom: none;
 }
 
 .section.active {
@@ -291,7 +333,7 @@ body {
 }
 
 .section-content {
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
 }
 
@@ -397,7 +439,7 @@ body {
 }
 
 .project-card:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
 .project-image {
@@ -465,7 +507,7 @@ body {
 }
 
 .project-card-full:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
 .project-card-full .project-image {
@@ -543,7 +585,7 @@ body {
 }
 
 .article-card:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
 .article-meta {
@@ -1110,8 +1152,9 @@ body {
   }
 
   .section {
-    padding: 2rem 1.5rem;
+    padding: 2.25rem 1.5rem;
     min-height: calc(100vh - 60px);
+    scroll-margin-top: 72px;
   }
 
   .hero-title {
@@ -1168,6 +1211,7 @@ body {
 @media (max-width: 480px) {
   .section {
     padding: 1.5rem 1rem;
+    scroll-margin-top: 72px;
   }
 
   .hero-title {
