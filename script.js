@@ -1,109 +1,71 @@
-// DOM Elements
-const menuToggle = document.querySelector(".menu-toggle")
-const sidebar = document.getElementById("sidebar")
-const overlay = document.getElementById("overlay")
-const navLinks = document.querySelectorAll(".nav-link")
-const sections = document.querySelectorAll(".section")
+const navLinks = document.querySelectorAll('.top-nav-menu .nav-link')
+const sections = document.querySelectorAll('.section')
+const logoLink = document.querySelector('.logo-link[data-section]')
 
-// Toggle mobile menu
-function toggleMenu() {
-  menuToggle.classList.toggle("active")
-  sidebar.classList.toggle("active")
-  overlay.classList.toggle("active")
-  document.body.style.overflow = sidebar.classList.contains("active") ? "hidden" : ""
-}
-
-// Close mobile menu
-function closeMenu() {
-  menuToggle.classList.remove("active")
-  sidebar.classList.remove("active")
-  overlay.classList.remove("active")
-  document.body.style.overflow = ""
-}
-
-// Show section
-function showSection(sectionId) {
-  // Hide all sections
-  sections.forEach((section) => {
-    section.classList.remove("active")
-  })
-
-  // Show target section
-  const targetSection = document.getElementById(sectionId)
-  if (targetSection) {
-    targetSection.classList.add("active")
-  }
-
-  // Update active nav link
+function setActiveNav(sectionId) {
   navLinks.forEach((link) => {
-    link.classList.remove("active")
-    if (link.dataset.section === sectionId) {
-      link.classList.add("active")
-    }
+    const isActive = link.dataset.section === sectionId
+    link.classList.toggle('active', isActive)
+    link.setAttribute('aria-current', isActive ? 'page' : 'false')
   })
-
-  // Close mobile menu after navigation
-  closeMenu()
-
-  // Scroll to top of section
-  window.scrollTo(0, 0)
 }
 
-// Event Listeners
-if (menuToggle) {
-  menuToggle.addEventListener("click", toggleMenu)
-}
+function scrollToSection(sectionId, { updateHistory = true, behavior = 'smooth' } = {}) {
+  const targetSection = document.getElementById(sectionId)
+  if (!targetSection) return
 
-if (overlay) {
-  overlay.addEventListener("click", closeMenu)
-}
+  targetSection.scrollIntoView({ behavior, block: 'start' })
+  setActiveNav(sectionId)
 
-// Navigation click handler
-navLinks.forEach((link) => {
-  link.addEventListener("click", (e) => {
-    e.preventDefault()
-    const sectionId = link.dataset.section
-    showSection(sectionId)
-
-    // Update URL hash without scrolling
-    history.pushState(null, null, `#${sectionId}`)
-  })
-})
-
-// Handle browser back/forward buttons
-window.addEventListener("popstate", () => {
-  const hash = window.location.hash.slice(1) || "home"
-  showSection(hash)
-})
-
-// Initialize on page load
-document.addEventListener("DOMContentLoaded", () => {
-  // Check for hash in URL
-  const hash = window.location.hash.slice(1)
-  if (hash && document.getElementById(hash)) {
-    showSection(hash)
-  } else if (document.getElementById("home")) {
-    showSection("home")
+  if (updateHistory) {
+    history.pushState(null, '', `#${sectionId}`)
   }
-})
+}
 
-// Handle escape key to close menu
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape" && sidebar && sidebar.classList.contains("active")) {
-    closeMenu()
-  }
-})
+function setupSectionObserver() {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const visibleEntries = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)
 
-// Smooth scroll for anchor links within sections
-document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-  if (!anchor.classList.contains("nav-link")) {
-    anchor.addEventListener("click", (e) => {
-      const targetId = anchor.getAttribute("href").slice(1)
-      if (document.getElementById(targetId)) {
-        e.preventDefault()
-        showSection(targetId)
-        history.pushState(null, null, `#${targetId}`)
+      if (visibleEntries.length > 0) {
+        setActiveNav(visibleEntries[0].target.id)
       }
-    })
-  }
+    },
+    {
+      root: null,
+      threshold: [0.25, 0.5, 0.75],
+      rootMargin: '-20% 0px -45% 0px',
+    },
+  )
+
+  sections.forEach((section) => observer.observe(section))
+}
+
+navLinks.forEach((link) => {
+  link.addEventListener('click', (event) => {
+    event.preventDefault()
+    const sectionId = link.dataset.section
+    if (sectionId) scrollToSection(sectionId)
+  })
+})
+
+if (logoLink) {
+  logoLink.addEventListener('click', (event) => {
+    event.preventDefault()
+    scrollToSection('home')
+  })
+}
+
+window.addEventListener('popstate', () => {
+  const sectionId = window.location.hash.slice(1) || 'home'
+  scrollToSection(sectionId, { updateHistory: false, behavior: 'auto' })
+})
+
+document.addEventListener('DOMContentLoaded', () => {
+  setupSectionObserver()
+
+  const sectionId = window.location.hash.slice(1) || 'home'
+  scrollToSection(sectionId, { updateHistory: false, behavior: 'auto' })
 })
