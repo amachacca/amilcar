@@ -19,7 +19,6 @@
   --transition: all 0.3s ease;
 }
 
-html.dark-theme,
 body.dark-theme {
   --color-text: #e5e7eb;
   --color-text-light: #9ca3af;
@@ -1214,8 +1213,8 @@ body {
 
   .section {
     padding: 2.25rem 1.5rem;
-    min-height: calc(100vh - 108px);
-    scroll-margin-top: 118px;
+    min-height: calc(100vh - 60px);
+    scroll-margin-top: 72px;
   }
 
   .hero-title {
@@ -1272,7 +1271,7 @@ body {
 @media (max-width: 480px) {
   .section {
     padding: 1.5rem 1rem;
-    scroll-margin-top: 118px;
+    scroll-margin-top: 72px;
   }
 
   .hero-title {
