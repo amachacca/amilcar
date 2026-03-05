@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contacta conmigo para consultoría en ingeniería estructural. Respondo en menos de 24 horas.">
+  <title>Contacto | Ingeniero Estructural</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/layout.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/responsive.css">
+</head>
+<body>
+  <header>
+    <nav class="navbar container">
+      <a href="/index.html" class="navbar-brand">Ing. Estructural</a>
+      <button class="navbar-toggle" aria-label="Abrir menú de navegación">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="navbar-menu">
+        <li><a href="/index.html">Inicio</a></li>
+        <li><a href="/sobre-mi/index.html">Sobre mí</a></li>
+        <li><a href="/servicios/index.html">Servicios</a></li>
+        <li><a href="/proyectos/index.html">Proyectos</a></li>
+        <li><a href="/blog/index.html">Blog</a></li>
+        <li><a href="/recursos/index.html">Recursos</a></li>
+        <li><a href="/contacto/index.html">Contacto</a></li>
+        <li><button class="theme-toggle" aria-label="Cambiar tema"></button></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container">
+      <nav class="breadcrumbs">
+        <a href="/index.html">Inicio</a>
+        <span>/</span>
+        <span>Contacto</span>
+      </nav>
+    </div>
+
+    <!-- Hero -->
+    <section style="padding: var(--space-xl) 0;">
+      <div class="container text-center">
+        <h1>Contacto</h1>
+        <p style="font-size: var(--font-size-xl); color: var(--color-text-light); max-width: 800px; margin: 0 auto;">
+          ¿Tienes un proyecto en mente? Escríbeme y te responderé en menos de 24 horas
+        </p>
+      </div>
+    </section>
+
+    <!-- Contenido Principal -->
+    <section>
+      <div class="container">
+        <div class="grid grid-2" style="gap: var(--space-xxl);">
+          <!-- Columna izquierda: Formulario -->
+          <div>
+            <h2>Envíame un mensaje</h2>
+            <p style="margin-bottom: var(--space-lg); color: var(--color-text-light);">
+              Completa el formulario y me pondré en contacto contigo lo antes posible.
+            </p>
+
+            <!--
+              NOTA: Este formulario está preparado para usar servicios externos como:
+              - Formspree: https://formspree.io
+              - EmailJS: https://www.emailjs.com
+
+              Para activarlo con Formspree:
+              1. Registrarse en formspree.io
+              2. Reemplazar el action con: action="https://formspree.io/f/TU_ID"
+
+              Para activarlo con EmailJS:
+              1. Registrarse en emailjs.com
+              2. Configurar el servicio y plantilla
+              3. Añadir el SDK de EmailJS
+              4. Modificar el código JavaScript para usar EmailJS
+            -->
+            <form data-form method="POST" action="#">
+              <!-- Nombre -->
+              <div class="form-group">
+                <label for="nombre" class="form-label">Nombre completo *</label>
+                <input
+                  type="text"
+                  id="nombre"
+                  name="nombre"
+                  class="form-control"
+                  required
+                  minlength="3"
+                  placeholder="Ej: Juan Pérez">
+              </div>
+
+              <!-- Email -->
+              <div class="form-group">
+                <label for="email" class="form-label">Email *</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  class="form-control"
+                  required
+                  placeholder="Ej: juan@ejemplo.com">
+              </div>
+
+              <!-- Teléfono (opcional) -->
+              <div class="form-group">
+                <label for="telefono" class="form-label">Teléfono (opcional)</label>
+                <input
+                  type="tel"
+                  id="telefono"
+                  name="telefono"
+                  class="form-control"
+                  placeholder="Ej: +51 999 888 777">
+              </div>
+
+              <!-- Tipo de servicio -->
+              <div class="form-group">
+                <label for="servicio" class="form-label">Tipo de servicio *</label>
+                <select id="servicio" name="servicio" class="form-control" required>
+                  <option value="">Selecciona un servicio</option>
+                  <option value="diseno">Diseño Estructural</option>
+                  <option value="analisis">Análisis Estructural Avanzado</option>
+                  <option value="fem">Modelado FEM</option>
+                  <option value="automatizacion">Automatización con Python</option>
+                  <option value="consultoria">Consultoría General</option>
+                  <option value="otro">Otro</option>
+                </select>
+              </div>
+
+              <!-- Mensaje -->
+              <div class="form-group">
+                <label for="mensaje" class="form-label">Mensaje *</label>
+                <textarea
+                  id="mensaje"
+                  name="mensaje"
+                  class="form-control"
+                  required
+                  minlength="20"
+                  placeholder="Describe tu proyecto o consulta..."></textarea>
+              </div>
+
+              <!-- Botón de envío -->
+              <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
+                Enviar Mensaje
+              </button>
+
+              <p style="font-size: var(--font-size-sm); color: var(--color-text-light); margin-top: var(--space-sm);">
+                * Campos obligatorios
+              </p>
+            </form>
+          </div>
+
+          <!-- Columna derecha: Información de contacto -->
+          <div>
+            <h2>Información de Contacto</h2>
+
+            <!-- Email -->
+            <div class="card" style="margin-bottom: var(--space-md);">
+              <div class="card-content">
+                <h3 style="font-size: var(--font-size-lg); margin-bottom: var(--space-xs);">Email Profesional</h3>
+                <p style="color: var(--color-text-light); margin-bottom: var(--space-sm);">
+                  Respondo emails en menos de 24 horas
+                </p>
+                <a href="mailto:200190@unsaac.edu.pe" style="font-size: var(--font-size-lg); font-weight: var(--font-weight-bold);">
+                  200190@unsaac.edu.pe
+                </a>
+              </div>
+            </div>
+
+            <!-- LinkedIn -->
+            <div class="card" style="margin-bottom: var(--space-md);">
+              <div class="card-content">
+                <h3 style="font-size: var(--font-size-lg); margin-bottom: var(--space-xs);">LinkedIn</h3>
+                <p style="color: var(--color-text-light); margin-bottom: var(--space-sm);">
+                  Conéctate conmigo en LinkedIn
+                </p>
+                <a href="https://linkedin.com/in/amachacca" target="_blank" rel="noopener" class="btn btn-secondary">
+                  Ver Perfil en LinkedIn
+                </a>
+              </div>
+            </div>
+
+            <!-- Horario -->
+            <div class="card" style="margin-bottom: var(--space-md);">
+              <div class="card-content">
+                <h3 style="font-size: var(--font-size-lg); margin-bottom: var(--space-xs);">Horario de Atención</h3>
+                <ul style="list-style: none; margin: 0;">
+                  <li style="margin-bottom: var(--space-xs);">
+                    <strong>Lunes a Viernes:</strong> 9:00 AM - 6:00 PM
+                  </li>
+                  <li style="margin-bottom: var(--space-xs);">
+                    <strong>Sábados:</strong> 9:00 AM - 1:00 PM
+                  </li>
+                  <li>
+                    <strong>Domingos:</strong> Cerrado
+                  </li>
+                </ul>
+                <p style="color: var(--color-text-light); margin-top: var(--space-sm); font-size: var(--font-size-sm);">
+                  Zona horaria: GMT-5 (Lima, Perú)
+                </p>
+              </div>
+            </div>
+
+            <!-- FAQ rápido -->
+            <div class="card">
+              <div class="card-content">
+                <h3 style="font-size: var(--font-size-lg); margin-bottom: var(--space-sm);">Preguntas Frecuentes</h3>
+
+                <h4 style="font-size: var(--font-size-base); margin-bottom: var(--space-xs);">
+                  ¿Cuánto tiempo toma un proyecto?
+                </h4>
+                <p style="margin-bottom: var(--space-md); color: var(--color-text-light);">
+                  Depende de la complejidad. Un proyecto típico toma entre 2-8 semanas.
+                </p>
+
+                <h4 style="font-size: var(--font-size-base); margin-bottom: var(--space-xs);">
+                  ¿Trabajas con clientes internacionales?
+                </h4>
+                <p style="margin-bottom: var(--space-md); color: var(--color-text-light);">
+                  Sí, trabajo con clientes de toda América Latina y España.
+                </p>
+
+                <h4 style="font-size: var(--font-size-base); margin-bottom: var(--space-xs);">
+                  ¿Ofreces consultorías por hora?
+                </h4>
+                <p style="color: var(--color-text-light);">
+                  Sí, ofrezco consultorías técnicas por hora vía videollamada.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mapa o ubicación (opcional) -->
+    <section style="background-color: var(--color-background-alt);">
+      <div class="container">
+        <h2 style="text-align: center; margin-bottom: var(--space-lg);">Ubicación</h2>
+        <p style="text-align: center; color: var(--color-text-light); margin-bottom: var(--space-md);">
+          Basado en Cuco, Perú - Atención a clientes en toda América Latina
+        </p>
+
+        <!-- Aquí se podría integrar Google Maps -->
+        <div style="background-color: var(--color-border); height: 300px; border-radius: var(--border-radius-lg); display: flex; align-items: center; justify-content: center;">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2116.685375074947!2d-71.93262452240937!3d-13.529965662903038!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x916e7f38db996315%3A0x7ff8e8e83908df05!2sSan%20Sebastian!5e1!3m2!1ses-419!2spe!4v1772700964498!5m2!1ses-419!2spe"
+                width="100%"
+                height="100%"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Amilcar Machacca Mayo</h3>
+          <p>Especializado en diseño y análisis estructural avanzado con tecnología de punta.</p>
+        </div>
+        <div class="footer-section">
+          <h3>Enlaces Rápidos</h3>
+          <ul>
+            <li><a href="/sobre-mi/index.html">Sobre mí</a></li>
+            <li><a href="/servicios/index.html">Servicios</a></li>
+            <li><a href="/proyectos/index.html">Proyectos</a></li>
+            <li><a href="/blog/index.html">Blog</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Servicios</h3>
+          <ul>
+            <li><a href="/servicios/index.html#diseno">Diseño Estructural</a></li>
+            <li><a href="/servicios/index.html#analisis">Análisis Avanzado</a></li>
+            <li><a href="/servicios/index.html#fem">Modelado FEM</a></li>
+            <li><a href="/servicios/index.html#automatizacion">Automatización</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Contacto</h3>
+          <ul>
+            <li><a href="mailto:200190@unsaac.edu.pe">200190@unsaac.edu.pe</a></li>
+            <li><a href="https://linkedin.com/in/amachacca" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="/recursos/index.html">Recursos</a></li>
+            <li><a href="/contacto/index.html">Formulario de contacto</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Amilcar Machacca Mayo. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/navigation.js"></script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Guía completa para comenzar a utilizar OpenSees en análisis sísmico de estructuras con ejemplos prácticos.">
+  <title>Introducción al Análisis Sísmico con OpenSees | Blog</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/layout.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/responsive.css">
+</head>
+<body>
+  <header>
+    <nav class="navbar container">
+      <a href="/index.html" class="navbar-brand">Ing. Estructural</a>
+      <button class="navbar-toggle" aria-label="Abrir menú de navegación">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="navbar-menu">
+        <li><a href="/index.html">Inicio</a></li>
+        <li><a href="/sobre-mi/index.html">Sobre mí</a></li>
+        <li><a href="/servicios/index.html">Servicios</a></li>
+        <li><a href="/proyectos/index.html">Proyectos</a></li>
+        <li><a href="/blog/index.html">Blog</a></li>
+        <li><a href="/recursos/index.html">Recursos</a></li>
+        <li><a href="/contacto/index.html">Contacto</a></li>
+        <li><button class="theme-toggle" aria-label="Cambiar tema"></button></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container">
+      <nav class="breadcrumbs">
+        <a href="/index.html">Inicio</a>
+        <span>/</span>
+        <a href="/blog/index.html">Blog</a>
+        <span>/</span>
+        <span>Introducción al Análisis Sísmico con OpenSees</span>
+      </nav>
+    </div>
+
+    <!-- Artículo -->
+    <article>
+      <section style="padding: var(--space-xl) 0;">
+        <div class="container container-narrow">
+          <p class="article-date">15 de Febrero, 2024</p>
+          <h1>Introducción al Análisis Sísmico con OpenSees</h1>
+
+          <div class="tags" style="margin-bottom: var(--space-xl);">
+            <span class="tag">OpenSees</span>
+            <span class="tag">Python</span>
+            <span class="tag">Análisis Sísmico</span>
+            <span class="tag">Tutorial</span>
+          </div>
+
+          <!-- Introducción -->
+          <h2>Introducción</h2>
+          <p>
+            OpenSees (Open System for Earthquake Engineering Simulation) es una plataforma de software
+            libre para modelado y análisis de estructuras sometidas a cargas sísmicas. En este artículo,
+            aprenderás los conceptos básicos para comenzar a utilizar OpenSees en tus proyectos de
+            ingeniería estructural.
+          </p>
+
+          <p>
+            OpenSees es especialmente útil para análisis no lineal de estructuras, permitiendo modelar
+            el comportamiento real de materiales y elementos estructurales bajo condiciones extremas.
+          </p>
+
+          <!-- ¿Qué es OpenSees? -->
+          <h2>¿Qué es OpenSees?</h2>
+          <p>
+            OpenSees es un framework de software desarrollado por la Universidad de California, Berkeley,
+            que permite realizar análisis estructural avanzado. Sus principales características son:
+          </p>
+
+          <ul style="list-style: disc; margin-left: var(--space-lg); margin-bottom: var(--space-md);">
+            <li>Análisis estático y dinámico no lineal</li>
+            <li>Amplia biblioteca de elementos y materiales</li>
+            <li>Capacidad de modelar interacción suelo-estructura</li>
+            <li>Interfaz con Python mediante OpenSeesPy</li>
+            <li>Software libre y gratuito</li>
+          </ul>
+
+          <!-- Instalación -->
+          <h2>Instalación de OpenSeesPy</h2>
+          <p>
+            La forma más sencilla de comenzar con OpenSees es mediante OpenSeesPy, la interfaz Python.
+            Para instalar, simplemente ejecuta:
+          </p>
+
+          <pre><code>pip install openseespy</code></pre>
+
+          <p>
+            Una vez instalado, puedes verificar la instalación con:
+          </p>
+
+          <pre><code>import openseespy.opensees as ops
+print("OpenSees instalado correctamente")</code></pre>
+
+          <!-- Ejemplo Básico -->
+          <h2>Ejemplo Práctico: Pórtico Simple</h2>
+          <p>
+            Vamos a crear un modelo simple de un pórtico de un nivel para demostrar las capacidades
+            básicas de OpenSees. Este ejemplo incluye la definición de nodos, elementos y análisis modal.
+          </p>
+
+          <h3>1. Importar librerías y definir modelo</h3>
+          <pre><code>import openseespy.opensees as ops
+import numpy as np
+
+# Limpiar modelo previo
+ops.wipe()
+
+# Crear modelo (2 dimensiones, 3 grados de libertad por nodo)
+ops.model('basic', '-ndm', 2, '-ndf', 3)</code></pre>
+
+          <h3>2. Definir geometría</h3>
+          <pre><code># Nodos (tag, x, y)
+ops.node(1, 0.0, 0.0)    # Base izquierda
+ops.node(2, 4.0, 0.0)    # Base derecha
+ops.node(3, 0.0, 3.0)    # Techo izquierdo
+ops.node(4, 4.0, 3.0)    # Techo derecho
+
+# Fijar base
+ops.fix(1, 1, 1, 1)
+ops.fix(2, 1, 1, 1)</code></pre>
+
+          <h3>3. Definir material y secciones</h3>
+          <pre><code># Material elástico (tag, E)
+E = 2.1e11  # Acero en Pa
+ops.uniaxialMaterial('Elastic', 1, E)
+
+# Propiedades de sección
+A = 0.01   # Área
+I = 8.33e-5  # Inercia
+
+# Transformación geométrica
+ops.geomTransf('Linear', 1)</code></pre>
+
+          <h3>4. Crear elementos</h3>
+          <pre><code># Elementos (tag, nodo_i, nodo_j, A, E, I, transf)
+ops.element('elasticBeamColumn', 1, 1, 3, A, E, I, 1)  # Columna izq
+ops.element('elasticBeamColumn', 2, 2, 4, A, E, I, 1)  # Columna der
+ops.element('elasticBeamColumn', 3, 3, 4, A, E, I, 1)  # Viga</code></pre>
+
+          <h3>5. Análisis modal</h3>
+          <pre><code># Análisis de valores propios
+numModes = 3
+eigenValues = ops.eigen(numModes)
+
+# Calcular periodos
+import math
+periods = [2 * math.pi / math.sqrt(ev) for ev in eigenValues]
+
+print("Periodos de vibración:")
+for i, T in enumerate(periods, 1):
+    print(f"Modo {i}: T = {T:.3f} segundos")</code></pre>
+
+          <!-- Resultados -->
+          <h2>Interpretación de Resultados</h2>
+          <p>
+            El análisis modal nos proporciona información fundamental sobre el comportamiento dinámico
+            de la estructura:
+          </p>
+
+          <ul style="list-style: disc; margin-left: var(--space-lg); margin-bottom: var(--space-md);">
+            <li><strong>Periodo fundamental:</strong> Indica la frecuencia natural de vibración</li>
+            <li><strong>Modos de vibración:</strong> Describen las formas en que la estructura se deforma</li>
+            <li><strong>Masa modal:</strong> Cantidad de masa que participa en cada modo</li>
+          </ul>
+
+          <!-- Siguientes Pasos -->
+          <h2>Próximos Pasos</h2>
+          <p>
+            Este ejemplo básico es solo el comienzo. OpenSees permite realizar análisis mucho más
+            complejos, incluyendo:
+          </p>
+
+          <ul style="list-style: disc; margin-left: var(--space-lg); margin-bottom: var(--space-md);">
+            <li>Análisis tiempo-historia con acelerogramas reales</li>
+            <li>Análisis pushover para evaluar capacidad</li>
+            <li>Modelado de materiales no lineales (concreto, acero)</li>
+            <li>Análisis de interacción suelo-estructura</li>
+            <li>Estructuras 3D complejas</li>
+          </ul>
+
+          <!-- Conclusión -->
+          <h2>Conclusión</h2>
+          <p>
+            OpenSees es una herramienta poderosa para el análisis estructural avanzado. Aunque la curva
+            de aprendizaje puede ser pronunciada, el dominio de esta herramienta te permitirá realizar
+            análisis que serían imposibles con software comercial convencional.
+          </p>
+
+          <p>
+            La integración con Python mediante OpenSeesPy facilita enormemente la automatización de
+            análisis y el post-procesamiento de resultados, convirtiéndolo en una herramienta indispensable
+            para ingenieros estructurales modernos.
+          </p>
+
+          <!-- Referencias -->
+          <h2>Referencias</h2>
+          <ul style="list-style: decimal; margin-left: var(--space-lg);">
+            <li>OpenSees Documentation - opensees.berkeley.edu</li>
+            <li>OpenSeesPy Documentation - openseespydoc.readthedocs.io</li>
+            <li>McKenna, F., et al. (2000). "OpenSees: A Framework for Earthquake Engineering Simulation"</li>
+            <li>Chopra, A. K. (2017). "Dynamics of Structures: Theory and Applications"</li>
+          </ul>
+
+          <!-- Navegación -->
+          <div style="margin-top: var(--space-xxl); padding-top: var(--space-lg); border-top: 1px solid var(--color-border);">
+            <div class="flex-between" style="flex-wrap: wrap; gap: var(--space-md);">
+              <a href="/blog/index.html" class="btn btn-secondary">← Volver al Blog</a>
+              <a href="/recursos/index.html" class="btn btn-primary">Ver Recursos</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Amilcar Machacca Mayo</h3>
+          <p>Especializado en diseño y análisis estructural avanzado con tecnología de punta.</p>
+        </div>
+        <div class="footer-section">
+          <h3>Enlaces Rápidos</h3>
+          <ul>
+            <li><a href="/sobre-mi/index.html">Sobre mí</a></li>
+            <li><a href="/servicios/index.html">Servicios</a></li>
+            <li><a href="/proyectos/index.html">Proyectos</a></li>
+            <li><a href="/blog/index.html">Blog</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Servicios</h3>
+          <ul>
+            <li><a href="/servicios/index.html#diseno">Diseño Estructural</a></li>
+            <li><a href="/servicios/index.html#analisis">Análisis Avanzado</a></li>
+            <li><a href="/servicios/index.html#fem">Modelado FEM</a></li>
+            <li><a href="/servicios/index.html#automatizacion">Automatización</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Contacto</h3>
+          <ul>
+            <li><a href="mailto:200190@unsaac.edu.pe">200190@unsaac.edu.pe</a></li>
+            <li><a href="https://linkedin.com/in/amachacca" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="/recursos/index.html">Recursos</a></li>
+            <li><a href="/contacto/index.html">Formulario de contacto</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Amilcar Machacca Mayo. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/navigation.js"></script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

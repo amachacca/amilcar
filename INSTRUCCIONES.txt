@@ -1,0 +1,1629 @@
+================================================================================
+                    INSTRUCCIONES DEL SITIO WEB
+          Guía Completa para Entender, Modificar y Mantener el Sitio
+================================================================================
+
+Este documento es una guía completa para administrar, modificar y mantener este
+sitio web profesional de un Ingeniero Estructural.
+
+================================================================================
+1. EXPLICACIÓN GENERAL DEL PROYECTO
+================================================================================
+
+EL PROYECTO EN RESUMEN:
+Este es un sitio web profesional de cartera (portafolio) para un Ingeniero
+Estructural. El sitio presenta servicios, proyectos, un blog, información de
+contacto y recursos descargables.
+
+ARQUITECTURA DEL SITIO:
+- Arquitectura de SITIO ESTÁTICO: Todas las páginas son archivos HTML simples
+  que se pueden publicar directamente sin servidor backend.
+- Construcción con VITE: Proyecto configurado con Vite (herramienta de
+  construcción moderna) para desarrollo y bundles optimizados.
+- Diseño RESPONSIVE: El sitio se adapta automáticamente a móviles, tablets y
+  computadoras de escritorio.
+- Sistema de TEMA CLARO/OSCURO: Los usuarios pueden cambiar entre tema claro
+  y oscuro con un botón en el menú.
+- Navegación MÓVIL AMIGABLE: Menú hamburguesa en dispositivos móviles que
+  desaparece en desktop.
+
+FLUJO DEL SITIO:
+1. Usuario entra a /index.html (página principal)
+2. Puede navegar a través del menú principal (Inicio, Sobre mí, Servicios,
+   Proyectos, Blog, Recursos, Contacto)
+3. Cada página tiene el mismo header, navegación y footer
+4. Los estilos se cargan desde /assets/css/
+5. Las funcionalidades interactivas se cargan desde /assets/js/
+
+ESTRUCTURA DE CARPETAS:
+proyecto/
+├── index.html              → Página principal
+├── package.json            → Configuración del proyecto Vite
+├── assets/                 → Recursos (CSS, JS, imágenes)
+│   ├── css/               → Todos los estilos CSS
+│   │   ├── main.css       → Variables y estilos base
+│   │   ├── layout.css     → Estructura y layouts
+│   │   ├── components.css → Botones, cards, formularios
+│   │   └── responsive.css → Diseño responsive
+│   ├── js/                → Todos los scripts JavaScript
+│   │   ├── main.js        → Funcionalidades generales
+│   │   ├── navigation.js  → Menú y navegación
+│   │   └── theme.js       → Sistema de tema claro/oscuro
+│   ├── images/            → Imágenes del sitio (si existen)
+│   └── docs/              → Documentos descargables (CV, PDFs, etc)
+├── blog/                   → Sección de blog
+│   ├── index.html         → Listado de artículos
+│   └── articulo-ejemplo/  → Carpeta de artículo individual
+│       └── index.html     → Contenido del artículo
+├── contacto/              → Página de contacto
+│   └── index.html
+├── proyectos/             → Sección de proyectos
+│   ├── index.html         → Listado de proyectos
+│   └── proyecto-ejemplo/  → Carpeta de proyecto individual
+│       └── index.html     → Detalles del proyecto
+├── recursos/              → Página de recursos descargables
+│   └── index.html
+├── servicios/             → Página de servicios
+│   └── index.html
+├── sobre-mi/              → Página "Sobre mí"
+│   └── index.html
+└── public/                → Archivos estáticos públicos (vacio ahora)
+
+================================================================================
+2. ESTRUCTURA DETALLADA DEL PROYECTO
+================================================================================
+
+CARPETA: assets/css/
+────────────────────────────────────────────────────────────────────────────
+
+main.css (295 líneas)
+  Propósito: Define todo el sistema de diseño del sitio
+  Contiene:
+    - VARIABLES CSS: Colores, espaciados, tipografía, sombras, transiciones
+    - Reset CSS: Estilos base para todos los elementos
+    - Tipografía: Tamaños, pesos, alturas de línea
+  Qué modificar: Los colores, tipografías, espaciados
+  NO modificar: La estructura de las variables
+
+  VARIABLES IMPORTANTES A PERSONALIZAR:
+  --color-primary: #1e3a5f       (Color azul principal)
+  --color-secondary: #4a6fa5     (Color azul secundario)
+  --color-accent: #e67e22        (Color naranja de énfasis)
+  --color-text: #2c3e50          (Color del texto)
+  --font-primary: 'Inter'        (Fuente principal)
+  
+
+layout.css (347 líneas)
+  Propósito: Estructura general del sitio
+  Contiene:
+    - Container (contenedores con ancho máximo)
+    - Header y navegación
+    - Sistema de grid (grid-2, grid-3, grid-4)
+    - Secciones comunes
+    - Footer
+  Qué modificar: Espaciados, ancho máximo del contenedor
+  NO modificar: Las clases base del sistema
+
+
+components.css (430 líneas)
+  Propósito: Componentes reutilizables
+  Contiene:
+    - Botones (.btn, .btn-primary, .btn-secondary, .btn-accent)
+    - Cards (.card, .card-content, .card-title)
+    - Formularios
+    - Badges y etiquetas (.tag)
+    - Timelines (para experiencia y formación académica)
+  Qué modificar: Colores, tamaños, efectos hover
+  NO modificar: Las clases base
+
+
+responsive.css (393 líneas)
+  Propósito: Hace el sitio responsive para todos los dispositivos
+  Contiene:
+    - Media queries para diferentes pantallas
+    - Breakpoints: Mobile (<768px), Tablet (768-1024px), Desktop (>1024px)
+    - Ajustes de navegación móvil
+    - Stack de elementos en móvil
+  Qué modificar: Los breakpoints si es necesario
+  NO modificar: A menos que necesites cambiar el comportamiento responsive
+
+
+CARPETA: assets/js/
+────────────────────────────────────────────────────────────────────────────
+
+main.js (326 líneas)
+  Propósito: Funcionalidades generales del sitio
+  Maneja:
+    - Animaciones al hacer scroll (elementos se ven con efecto)
+    - Lazy loading de imágenes (cargan cuando entran en vista)
+    - Validación de formularios
+    - Utilidades generales
+  Qué modificar: Umbrales de animación, validaciones
+  NO modificar: La lógica base de scroll animations
+
+
+navigation.js (177 líneas)
+  Propósito: Sistema de navegación
+  Maneja:
+    - Menú móvil (hamburguesa)
+    - Indicador de página activa (resalta el link actual)
+    - Efecto scroll en header (sombra cuando scrolleas)
+    - Smooth scroll hacia elementos
+  Qué modificar: Tiempo de transiciones
+  NO modificar: Las clases de toggle
+
+
+theme.js (187 líneas)
+  Propósito: Sistema de tema claro/oscuro
+  Maneja:
+    - Cambio entre tema claro y oscuro
+    - Guardado de preferencia del usuario en localStorage
+    - Detección de preferencia del sistema
+    - Aplicación de variables CSS según el tema
+  Cómo funciona:
+    1. Usuario hace clic en botón tema (con clase .theme-toggle)
+    2. Script obtiene tema preferido del localStorage
+    3. Aplica las variables CSS correspondientes
+    4. Guarda la preferencia
+  NO modificar: A menos que quieras cambiar los colores del tema oscuro
+
+
+ARCHIVOS HTML PRINCIPALES:
+────────────────────────────────────────────────────────────────────────────
+
+index.html (384 líneas - Página Principal)
+  Secciones:
+  - Header con navegación
+  - Hero section (bienvenida principal)
+  - Servicios profesionales (3 cards)
+  - Habilidades (grid de tecnologías)
+  - Testimonios (si existen)
+  - CTA (llamada de acción)
+  - Footer
+  
+  Qué modificar:
+  - Textos de bienvenida en la sección hero
+  - Descripción de servicios
+  - Habilidades y tecnologías
+  Dónde está el contenido:
+  - <h1>Ingeniero Estructural</h1> → Título principal
+  - <p>Especializado en...</p> → Subtítulo
+  - <div class="card">...</div> → Servicios
+
+
+sobre-mi/index.html (441 líneas - Página Sobre Mí)
+  Secciones:
+  - Imagen de perfil
+  - Presentación y bio
+  - Descarga de CV
+  - Formación académica (timeline)
+  - Experiencia profesional (timeline)
+  - Habilidades
+  
+  Qué modificar:
+  - Foto de perfil (buscar <img src="...")
+  - Texto de presentación
+  - Educación y experiencia en las secciones de timeline
+
+
+servicios/index.html
+  Secciones:
+  - Listado detallado de servicios
+  - Descripción de cada uno
+  - Beneficios
+  
+  Qué modificar: Descripciones de servicios, precios (si aplica)
+
+
+proyectos/index.html
+  Secciones:
+  - Galería de proyectos
+  - Descripción de cada proyecto
+  - Tecnologías usadas
+  - Enlaces a proyectos individuales
+  
+  Qué modificar: Textos de proyectos, imágenes, enlaces
+
+
+proyectos/proyecto-ejemplo/index.html
+  Secciones:
+  - Título y descripción del proyecto
+  - Desafíos
+  - Solución implementada
+  - Resultados
+  - Tecnologías
+  - Imágenes/capturas
+  
+  Qué modificar: El contenido específico del proyecto
+
+
+blog/index.html
+  Secciones:
+  - Listado de artículos
+  - Preview de cada artículo
+  - Fecha de publicación
+  - Categorías
+  
+  Qué modificar: Títulos de artículos, resúmenes
+
+
+blog/articulo-ejemplo/index.html
+  Secciones:
+  - Título del artículo
+  - Meta información (fecha, autor)
+  - Contenido completo
+  - Código de ejemplo
+  - Tabla de contenidos
+  
+  Qué modificar: Todo el contenido del artículo
+
+
+contacto/index.html
+  Secciones:
+  - Información de contacto
+  - Formulario de contacto
+  - Redes sociales
+  
+  Qué modificar: Email, teléfono, redes sociales, mensaje del formulario
+
+
+recursos/index.html
+  Secciones:
+  - Descargas disponibles
+  - Guías
+  - Documentos
+  - Recursos educativos
+  
+  Qué modificar: Enlaces de descarga, descripciones
+
+
+package.json
+  Propósito: Configuración del proyecto Vite
+  Contiene:
+  - Nombre del proyecto
+  - Scripts de desarrollo y construcción
+  - Dependencias
+  
+  NO MODIFICAR: A menos que agregues nuevas dependencias (npm install)
+
+
+================================================================================
+3. QUÉ CONTENIDO DEBO MODIFICAR
+================================================================================
+
+MODIFICAR TEXTOS DEL SITIO:
+────────────────────────────
+
+PÁGINA PRINCIPAL (index.html):
+
+1. Título Principal:
+   Busca: <h1>Ingeniero Estructural</h1>
+   Cambia: Por tu nombre o título
+   Ubicación: Línea ~50
+
+2. Subtítulo:
+   Busca: <p>Especializado en diseño y análisis estructural...</p>
+   Cambia: Por tu descripción
+   Ubicación: Línea ~51
+
+3. Textos de Servicios:
+   Los servicios están en cards dentro de la sección #servicios
+   Busca: <h3 class="card-title">
+   Cambia: Los títulos y descripciones
+   Ubicación: Líneas ~75-120
+
+4. Tags de Servicios:
+   Busca: <span class="tag">...</span>
+   Cambia: Las tecnologías/áreas
+   Ubicación: Dentro de cada card
+
+
+PÁGINA SOBRE MÍ (sobre-mi/index.html):
+
+1. Foto de Perfil:
+   Busca: <img src="https://images.pexels.com/photos/...")
+   Cambia: Reemplaza la URL o usa una imagen local
+   Ubicación: Línea ~60
+
+2. Biografía Principal:
+   Busca: <p style="line-height: var(--line-height-relaxed);">...
+   Cambia: Todo el texto de presentación
+   Ubicación: Líneas ~65-80
+
+3. Educación:
+   Busca: <div class="timeline-item">
+   Cambia: Los títulos, fechas y descripciones de educación
+   Ubicación: Líneas ~95-130
+
+4. Experiencia Profesional:
+   Busca: <div class="timeline-item">
+   Cambia: Puestos de trabajo, empresas, fechas, logros
+   Ubicación: Líneas ~140+
+
+5. CV Descargable:
+   Busca: <a href="/assets/docs/cv-ejemplo.pdf" class="btn btn-primary" download>
+   Cambia: La ruta al archivo de tu CV
+   Ubicación: Línea ~88
+
+
+PÁGINA DE SERVICIOS (servicios/index.html):
+
+1. Títulos de Servicios:
+   Busca: <h3 class="card-title">
+   Cambia: Nombres de los servicios
+
+2. Descripciones:
+   Busca: <p class="card-description">
+   Cambia: Detalles de cada servicio
+
+3. Precios/Modelos (si aplica):
+   Busca: <span class="price"> o similar
+   Cambia: Los valores
+
+
+PÁGINA DE PROYECTOS (proyectos/index.html):
+
+1. Títulos de Proyectos:
+   Busca: <h3> o <h2> dentro de cards
+   Cambia: Nombres de los proyectos
+
+2. Descripciones de Proyectos:
+   Busca: <p class="card-description">
+   Cambia: Resumen o descripción de cada proyecto
+
+3. Tecnologías:
+   Busca: <span class="tag">
+   Cambia: Herramientas/lenguajes utilizados
+
+
+PÁGINA DE BLOG (blog/index.html):
+
+1. Títulos de Artículos:
+   Busca: <h3> o <a href="articulo-nombre">
+   Cambia: Títulos de tus artículos
+
+2. Resúmenes:
+   Busca: <p> con clase card-description
+   Cambia: Preview corto de cada artículo
+
+3. Fechas:
+   Busca: <span class="date"> o <p class="meta">
+   Cambia: Fechas de publicación
+
+
+ARTÍCULOS INDIVIDUALES (blog/articulo-*/index.html):
+
+El contenido completo se encuentra en la etiqueta <main>
+
+1. Título:
+   Busca: <h1>
+   Cambia: Por el título del artículo
+
+2. Meta información:
+   Busca: <p class="meta"> o <span class="date">
+   Cambia: Fecha, autor, tiempo de lectura
+
+3. Contenido:
+   Busca: <p>, <h2>, <ul>, <code>, etc.
+   Cambia: Todo el contenido del artículo
+
+4. Código de ejemplo:
+   Busca: <code> o <pre><code>
+   Cambia: Tus ejemplos de código
+
+
+PÁGINA DE CONTACTO (contacto/index.html):
+
+1. Email:
+   Busca: <a href="mailto:...">
+   Cambia: Tu email
+   Busca También: <p> con email mostrado
+
+2. Teléfono:
+   Busca: <a href="tel:...">
+   Cambia: Tu número
+
+3. Ubicación:
+   Busca: <p> con dirección
+   Cambia: Tu ubicación
+
+4. Redes Sociales:
+   Busca: <a href="https://linkedin.com/in/..." >
+   Cambia: Los enlaces a tus perfiles
+
+
+PÁGINA DE RECURSOS (recursos/index.html):
+
+1. Títulos de Recursos:
+   Busca: <h3>
+   Cambia: Nombres de descargas/recursos
+
+2. Descripciones:
+   Busca: <p>
+   Cambia: Qué es cada recurso
+
+3. Enlaces de Descarga:
+   Busca: <a href="/assets/docs/..." download>
+   Cambia: Las rutas a tus documentos
+
+4. Etiquetas/Categorías:
+   Busca: <span class="tag">
+   Cambia: Categorías de recursos
+
+
+================================================================================
+4. CÓMO CAMBIAR IMÁGENES
+================================================================================
+
+DÓNDE COLOCAR NUEVAS IMÁGENES:
+────────────────────────────
+
+1. Crea una carpeta /assets/images/ si no existe
+2. Organiza las imágenes en subcarpetas:
+   /assets/images/
+   ├── profile/          (fotos de perfil)
+   ├── projects/         (imágenes de proyectos)
+   ├── services/         (iconos/imágenes de servicios)
+   ├── blog/             (imágenes de artículos)
+   └── icons/            (iconos del sitio)
+
+3. Sube tus archivos allí
+
+
+CÓMO REEMPLAZAR IMÁGENES EXISTENTES:
+────────────────────────────
+
+PASO 1: Localiza la imagen en el HTML
+   Busca: <img src="..." >
+
+PASO 2: Reemplaza la ruta
+   Encontrarás rutas como:
+   - Rutas externas: src="https://images.pexels.com/..."
+   - Rutas locales: src="/assets/images/..."
+
+PASO 3: Copia tu imagen
+
+
+BUENA PRÁCTICAS PARA IMÁGENES:
+────────────────────────────
+
+FORMATO RECOMENDADO:
+  - JPG: Para fotos (tamaño reducido)
+  - PNG: Para imágenes con transparencia
+  - WebP: Formato moderno, mejor compresión
+
+TAMAÑO RECOMENDADO:
+  - Foto de perfil: 400x400px (cuadrada)
+  - Imágenes de proyecto: 800x600px (responsable)
+  - Iconos de servicios: 100x100px
+  - Imágenes de blog: 1200x630px (proporción 16:9)
+
+OPTIMIZACIÓN:
+  1. Comprime las imágenes antes de subirlas (usar TinyPNG o similar)
+  2. Usa nombres descriptivos: perfil-profesional.jpg (no image1.jpg)
+  3. Mantén las imágenes en /assets/images/ para mejor organización
+
+
+EJEMPLOS DE RUTAS:
+────────────────────────────
+
+Para cambiar la foto de perfil en sobre-mi/index.html:
+
+ANTES:
+  <img src="https://images.pexels.com/photos/3184405/pexels-photo-3184405.jpeg"
+       alt="Perfil profesional">
+
+DESPUÉS (opción 1 - imagen local):
+  <img src="/assets/images/profile/mi-foto.jpg"
+       alt="Foto de perfil profesional">
+
+DESPUÉS (opción 2 - imagen externa):
+  <img src="https://tu-dominio.com/static/mi-foto.jpg"
+       alt="Foto de perfil profesional">
+
+
+CAMBIAR ALTURA Y ANCHO DE IMAGEN:
+────────────────────────────────
+
+Puedes agregar width y height al HTML:
+  <img src="/assets/images/profile/foto.jpg"
+       alt="Perfil"
+       width="400"
+       height="400">
+
+O usar CSS (más recomendado):
+  En un <style> o archivo CSS:
+  
+  img.profile-pic {
+    max-width: 400px;
+    height: auto;
+    border-radius: var(--border-radius-lg);
+  }
+
+
+================================================================================
+5. CÓMO CAMBIAR COLORES Y DISEÑO
+================================================================================
+
+DÓNDE ESTÁN DEFINIDOS LOS COLORES:
+────────────────────────────────
+
+Todo está en /assets/css/main.css en las variables CSS (líneas 16-45).
+
+VARIABLES DE COLOR PRINCIPAL:
+────────────────────────────
+
+Paleta de TEMA CLARO (lo que ves por defecto):
+
+:root {
+  --color-primary: #1e3a5f;        /* Azul oscuro profesional */
+  --color-secondary: #4a6fa5;      /* Azul acero */
+  --color-accent: #e67e22;         /* Naranja suave */
+  --color-text: #2c3e50;           /* Gris oscuro para texto */
+  --color-text-light: #7f8c8d;     /* Gris medio para texto secundario */
+  --color-background: #ffffff;     /* Fondo blanco */
+  --color-background-alt: #f8f9fa; /* Fondo gris claro alternativo */
+  --color-border: #e1e8ed;         /* Bordes suaves */
+  --color-success: #27ae60;        /* Verde para éxito */
+  --color-warning: #f39c12;        /* Amarillo para advertencias */
+  --color-error: #e74c3c;          /* Rojo para errores */
+}
+
+Paleta de TEMA OSCURO:
+Se define después, cuando se detecta body[data-theme="dark"]
+
+CÓMO CAMBIAR LA PALETA DE COLORES:
+────────────────────────────────
+
+PASO 1: Abre /assets/css/main.css
+
+PASO 2: Localiza la sección :root { ... }
+
+PASO 3: Cambia los valores hexadecimales
+
+EJEMPLO - Cambiar azul a rojo:
+  ANTES: --color-primary: #1e3a5f;
+  DESPUÉS: --color-primary: #c0392b;
+
+EJEMPLO - Cambiar naranja a verde:
+  ANTES: --color-accent: #e67e22;
+  DESPUÉS: --color-accent: #27ae60;
+
+COLORES RECOMENDADOS:
+────────────────────
+
+Azules profesionales:
+  #1e3a5f (actual - azul oscuro profesional)
+  #2c3e50 (más oscuro)
+  #34495e (gris-azul)
+
+Naranjas/Amarillos complementarios:
+  #e67e22 (actual - naranja suave)
+  #f39c12 (amarillo)
+  #e74c3c (rojo coral)
+
+Grises para texto:
+  #2c3e50 (oscuro - buena legibilidad)
+  #34495e (oscuro alternativo)
+  #7f8c8d (gris claro para secundario)
+
+Usa herramientas online para escoger paletas: coolors.co o colorhexa.com
+
+
+CÓMO CAMBIAR LA TIPOGRAFÍA:
+────────────────────────────
+
+En /assets/css/main.css busca:
+
+--font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+--font-secondary: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+
+Cambios simples:
+  - 'Inter' por 'Arial', 'Helvetica', 'Verdana'
+  - Fuentes populares: 'Poppins', 'Roboto', 'Open Sans'
+
+Para usar Google Fonts:
+  1. Ve a https://fonts.google.com
+  2. Elige una fuente
+  3. Copia el <link> de importación
+  4. Pégalo en el <head> de CADA archivo HTML
+  5. Actualiza el nombre en --font-primary
+
+EJEMPLO:
+  En el <head> de index.html (y otros HTML):
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  En main.css:
+  --font-primary: 'Poppins', sans-serif;
+
+
+CÓMO CAMBIAR TAMAÑOS DE FUENTE:
+────────────────────────────────
+
+En main.css se definen los tamaños:
+
+--font-size-xs: 0.75rem;      /* 12px */
+--font-size-sm: 0.875rem;     /* 14px */
+--font-size-base: 1rem;       /* 16px */
+--font-size-lg: 1.125rem;     /* 18px */
+--font-size-xl: 1.25rem;      /* 20px */
+--font-size-2xl: 1.5rem;      /* 24px */
+--font-size-3xl: 1.875rem;    /* 30px */
+--font-size-4xl: 2.25rem;     /* 36px */
+--font-size-5xl: 3rem;        /* 48px */
+
+Para aumentar todos los tamaños:
+  ANTES: --font-size-base: 1rem;
+  DESPUÉS: --font-size-base: 1.1rem;
+
+(Esto escalará todos los demás relativamente)
+
+
+CÓMO CAMBIAR ESPACIADOS (PADDING, MARGIN):
+────────────────────────────────────────────
+
+En main.css:
+
+--space-xs: 8px;
+--space-sm: 16px;
+--space-md: 24px;
+--space-lg: 32px;
+--space-xl: 48px;
+--space-xxl: 64px;
+
+Para más espaciado:
+  ANTES: --space-md: 24px;
+  DESPUÉS: --space-md: 32px;
+
+Para menos espaciado:
+  ANTES: --space-lg: 32px;
+  DESPUÉS: --space-lg: 24px;
+
+
+CÓMO MODIFICAR COMPONENTES (BOTONES, CARDS):
+──────────────────────────────────────────────
+
+BOTONES:
+
+En /assets/css/components.css busca:
+
+.btn {
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--border-radius-md);
+  /* ... */
+}
+
+Cambios posibles:
+  - Padding: Aumenta o disminuye var(--space-sm)
+  - Border-radius: Cambiar a var(--border-radius-lg) para más curvo
+  - Colores: Modificar background-color
+
+CARDS:
+
+En /assets/css/components.css busca:
+
+.card {
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+Cambios posibles:
+  - border-radius: más o menos curvo
+  - box-shadow: cambiar a var(--shadow-lg) para más sombra
+  - background-color: cambiar fondo
+
+
+SOMBRAS DISPONIBLES:
+
+--shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
+--shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);  /* Actual */
+--shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+--shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.2);
+
+Use shadow-lg o shadow-xl para más dramatismo.
+
+
+================================================================================
+6. CÓMO AGREGAR NUEVAS PÁGINAS
+================================================================================
+
+AGREGAR UN NUEVO PROYECTO:
+────────────────────────
+
+PASO 1: Crea la carpeta
+  En: /proyectos/
+  Nueva carpeta: /proyectos/mi-nuevo-proyecto/
+
+PASO 2: Crea el archivo HTML
+  Ubicación: /proyectos/mi-nuevo-proyecto/index.html
+  
+PASO 3: Copia el contenido de un proyecto existente
+  Usa: /proyectos/proyecto-ejemplo/index.html
+  Y reemplaza el contenido con tu proyecto
+
+PASO 4: Modifica los detalles:
+  - Cambiar título (<title>, <h1>)
+  - Cambiar descripción en <meta name="description">
+  - Agregar las secciones del proyecto
+  - Cambiar la imagen del proyecto
+  - Actualizar tecnologías usadas
+
+PASO 5: Añade el enlace en el listado (proyectos/index.html)
+  Busca la sección donde están los cards de proyectos
+  Copia un card existente
+  Cambia:
+    - <h3> con título del nuevo proyecto
+    - <p> con descripción
+    - <a href="/proyectos/mi-nuevo-proyecto/"> con la ruta
+    - <span class="tag"> con las tecnologías
+
+PASO 6: Verifica en el navegador
+  Abre en el navegador: http://localhost:5173/proyectos/mi-nuevo-proyecto/
+
+
+AGREGAR UN NUEVO ARTÍCULO DE BLOG:
+──────────────────────────────────
+
+PASO 1: Crea la carpeta para el artículo
+  En: /blog/
+  Nueva carpeta: /blog/mi-nuevo-articulo-nombre/
+  
+  Nota: Usa nombres desciptivos y en minúscula con guiones:
+  Bueno: /blog/analisis-dinamico-estructural/
+  Malo: /blog/articulo1/
+
+PASO 2: Crea el archivo HTML
+  Ubicación: /blog/mi-nuevo-articulo-nombre/index.html
+
+PASO 3: Copia el contenido de un artículo existente
+  Usa: /blog/articulo-ejemplo/index.html
+  Y adapta el contenido
+
+PASO 4: Modifica el artículo:
+  - Cambiar título
+  - Cambiar fecha de publicación
+  - Escribir el contenido completo
+  - Agregar ejemplos de código si es necesario
+  - Cambiar imagen principal
+
+PASO 5: Añade el enlace en el listado de blog (blog/index.html)
+  Busca la sección donde están los artículos
+  Copia un card de artículo
+  Cambia:
+    - Título
+    - Descripción/preview
+    - Fecha
+    - <a href="/blog/mi-nuevo-articulo-nombre/">
+
+PASO 6: Actualiza el menú principal (opcional)
+  Si es un artículo destacado, puedes enlazarlo en index.html
+
+
+AGREGAR UNA NUEVA PÁGINA COMPLETA:
+──────────────────────────────────
+
+Para agregar una sección completamente nueva (ej: "Experiencia"):
+
+PASO 1: Crea la carpeta
+  En: /
+  Nueva carpeta: /experiencia/
+
+PASO 2: Crea el archivo
+  Ubicación: /experiencia/index.html
+
+PASO 3: Copia el HTML de cualquier página existente
+  Por ejemplo: sobre-mi/index.html
+
+PASO 4: Modifica el contenido
+  - Cambiar título
+  - Cambiar descripción meta
+  - Cambiar contenido
+  - Actualizar breadcrumbs
+
+PASO 5: IMPORTANTE - Actualiza el menú de navegación
+  En TODOS los archivos HTML:
+  Busca: <ul class="navbar-menu">
+  
+  Añade un nuevo <li>:
+  <li><a href="/experiencia/index.html">Experiencia</a></li>
+  
+  Archivos a actualizar:
+  - index.html
+  - sobre-mi/index.html
+  - servicios/index.html
+  - proyectos/index.html
+  - proyectos/proyecto-ejemplo/index.html
+  - blog/index.html
+  - blog/articulo-ejemplo/index.html
+  - contacto/index.html
+  - recursos/index.html
+
+PASO 6: Verifica los enlaces
+  Asegúrate que todos los enlaces apunten correctamente
+
+
+PLANTILLA BÁSICA PARA NUEVA PÁGINA:
+─────────────────────────────────────
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Descripción corta de la página">
+  <title>Título Página | Ingeniero Estructural</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/layout.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/responsive.css">
+</head>
+<body>
+  <!-- Header y navegación (COPIA de index.html) -->
+  <header>
+    <!-- ... -->
+  </header>
+
+  <!-- Contenido principal -->
+  <main>
+    <section id="nombre-seccion">
+      <div class="container">
+        <h1>Título Principal</h1>
+        <p>Contenido aquí</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer (si existe en otros archivos) -->
+  <footer>
+    <!-- ... -->
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/navigation.js"></script>
+  <script src="/assets/js/theme.js"></script>
+</body>
+</html>
+
+
+================================================================================
+7. CÓMO FUNCIONA EL JAVASCRIPT DEL PROYECTO
+================================================================================
+
+El sitio tiene 3 scripts JavaScript principales que controlan funcionalidades
+diferentes. Todos se cargan en cada página HTML.
+
+SCRIPT 1: /assets/js/theme.js (187 líneas)
+─────────────────────────────────────────
+
+QUÉ HACE:
+  Permite cambiar entre tema claro (light) y oscuro (dark)
+
+CÓMO FUNCIONA:
+  1. Usuario hace clic en botón con clase .theme-toggle
+  2. Script verifica qué tema está activo
+  3. Cambia a el tema opuesto
+  4. Aplica variables CSS del tema nuevo
+  5. Guarda la preferencia en localStorage del navegador
+
+CONFIGURACIÓN:
+  El botón de cambio de tema está en: <button class="theme-toggle">
+  Se encuentra en la navegación de cada página
+
+COLORES DEL TEMA OSCURO:
+  En main.css, después de :root, hay:
+  
+  body[data-theme="dark"] {
+    --color-primary: #3498db;
+    --color-secondary: #2980b9;
+    --color-background: #1a1a1a;
+    /* ... más variables */
+  }
+
+MODIFICAR:
+  Si quieres cambiar los colores del tema oscuro:
+  Busca en main.css: body[data-theme="dark"] {
+  Modifica las variables del color
+
+
+SCRIPT 2: /assets/js/navigation.js (177 líneas)
+────────────────────────────────────────────────
+
+QUÉ HACE:
+  Controla toda la navegación del sitio
+
+FUNCIONES PRINCIPALES:
+
+1. MENÚ MÓVIL (Hamburguesa)
+   En pantallas pequeñas (<768px):
+   - Muestra un botón con 3 líneas (hamburguesa)
+   - Al hacer clic, abre/cierra el menú
+   - Al hacer clic en un enlace del menú, cierra automáticamente
+
+   Código HTML:
+   <button class="navbar-toggle">...</button>
+
+   Cómo funciona:
+   - Script busca .navbar-toggle
+   - Al hacer clic, agrega clase "active"
+   - Esto mostrada el menú .navbar-menu
+
+2. INDICADOR DE PÁGINA ACTIVA
+   El enlace del menú resalta la página actual
+   
+   Ejemplo:
+   Si estás en /sobre-mi/, el enlace "Sobre mí" se verá destacado
+   
+   Cómo funciona:
+   - Script obtiene la URL actual
+   - Compara con los href de los enlaces del menú
+   - Agrega clase "active" al enlace correcto
+
+3. EFECTO SCROLL EN HEADER
+   Cuando scrolleas hacia abajo:
+   - El header obtiene una sombra
+   - Esto indica que hay más contenido arriba
+   
+   Cómo funciona:
+   - Script detecta evento "scroll"
+   - Si scrollTop > 0, agrega clase "scrolled" al header
+   - CSS muestra una sombra
+
+4. SMOOTH SCROLL
+   Los enlaces internos (ej: #servicios) hacen scroll suave
+   
+   Ejemplo:
+   <a href="#servicios"> → anima el scroll hasta #servicios
+
+MODIFICAR:
+  La mayoría de funcionalidades NO necesitan modificación
+  Excepto:
+  - Si cambias la clase "active" del CSS, actualiza en navigation.js
+  - Si cambias la clase "scrolled", actualiza en navigation.js
+
+
+SCRIPT 3: /assets/js/main.js (326 líneas)
+──────────────────────────────────────────
+
+QUÉ HACE:
+  Maneja animaciones y funcionalidades generales del sitio
+
+FUNCIONES PRINCIPALES:
+
+1. ANIMACIONES DE SCROLL
+   Los elementos se animan cuando entran en la pantalla
+   
+   Cómo funciona:
+   - Usa Intersection Observer API (nativa del navegador)
+   - Detecta cuando un elemento entra en viewport
+   - Agrega clase "animate-in" al elemento
+   - CSS anima la entrada
+   
+   Elementos afectados:
+   - Cards (.card)
+   - Secciones (section)
+   - Párrafos (p)
+   
+   En main.js busca:
+   function initScrollAnimations()
+   
+   Configuración:
+   const observerOptions = {
+     threshold: 0.1,        // 10% debe ser visible
+     rootMargin: '0px 0px -50px 0px'; // Trigger anticipado
+   }
+   
+   MODIFICAR threshold si quieres que se animen antes o después
+
+2. LAZY LOADING DE IMÁGENES
+   Las imágenes se cargan solo cuando van a ser vistas
+   
+   Cómo funciona:
+   - Intersección Observer detecta cuando imagen entra en viewport
+   - Carga la imagen en ese momento
+   - Mejora performance en páginas con muchas imágenes
+   
+   En main.js busca:
+   function initLazyLoading()
+   
+   Para usarlo en HTML:
+   <img data-src="/assets/images/foto.jpg" alt="...">
+   
+   NOTA: Las imágenes deben usar data-src en vez de src
+
+3. VALIDACIÓN DE FORMULARIOS
+   Los formularios validan antes de enviar
+   
+   Cómo funciona:
+   - Detecta campos requeridos
+   - Valida emails
+   - Valida que las contraseñas coincidan (si aplica)
+   - Muestra mensajes de error
+   
+   En main.js busca:
+   function initForms()
+   
+   MODIFICAR si necesitas crear nuevos formularios con validaciones personalizadas
+
+4. UTILIDADES GENERALES
+   Funciones helper reutilizables
+   
+   Ejemplos:
+   - getScrollPercentage(): obtiene porcentaje scrolleado
+   - debounce(): evita ejecutar función demasiadas veces
+
+
+CÓMO MODIFICAR EL COMPORTAMIENTO DE JAVASCRIPT:
+─────────────────────────────────────
+
+EJEMPLO 1: Cambiar tiempo de animaciones
+
+En main.js busca:
+  --transition-base: 250ms ease-in-out;
+
+Cambia a:
+  --transition-base: 500ms ease-in-out;  // Más lento
+
+Esta variable se usa en CSS para suavidad de transiciones
+
+
+EJEMPLO 2: Cambiar sensibilidad de scroll animations
+
+En main.js busca:
+  threshold: 0.1
+
+Opciones:
+  0.05 = Se anima casi al llegar
+  0.1  = Actual (10% visible)
+  0.25 = Se anima cuando 25% está visible
+  0.5  = Se anima cuando está en el medio de la pantalla
+
+EJEMPLO 3: Agregar nueva animación
+
+En HTML:
+  <div class="elemento-para-animar">
+
+En main.js, en function initScrollAnimations():
+  - Se detecta automáticamente si tiene la clase especial
+  - Se añade "animate-in"
+  - CSS define la animación
+
+
+================================================================================
+8. COSAS IMPORTANTES QUE NO DEBO ROMPER
+================================================================================
+
+ESTRUCTURA DE CARPETAS:
+─────────────────────
+
+NO MUEVAS NI RENOMBRES:
+  ❌ /assets/           → CRÍTICO
+  ❌ /assets/css/       → CRÍTICO
+  ❌ /assets/js/        → CRÍTICO
+  
+Si mueves estas carpetas, todos los enlaces ( <link> y <script> )
+se romperán y el sitio no funcionará.
+
+Si absolutamente necesitas cambiar la estructura:
+  1. Verifica TODOS los <link rel="stylesheet" href="...">
+  2. Verifica TODOS los <script src="...">
+  3. Actualiza todas las rutas en TODOS los archivos HTML
+
+
+RUTAS DE ARCHIVOS:
+──────────────────
+
+Todas las rutas HTML usan "/" para empezar:
+  ✓ href="/proyectos/index.html"
+  ✓ href="/servicios/index.html"
+  ✓ src="/assets/css/main.css"
+  
+  ✗ href="proyectos/index.html"        (Relativa - puede fallar)
+  ✗ href="./proyectos/index.html"      (Relativa - puede fallar)
+  ✗ href="/proyecto-ejemplo"           (Sin index.html)
+
+REGLA: Siempre incluye "/" al principio
+
+
+MENÚ DE NAVEGACIÓN:
+──────────────────
+
+El menú debe estar en TODAS las páginas igual:
+
+<ul class="navbar-menu">
+  <li><a href="/index.html">Inicio</a></li>
+  <li><a href="/sobre-mi/index.html">Sobre mí</a></li>
+  <li><a href="/servicios/index.html">Servicios</a></li>
+  <li><a href="/proyectos/index.html">Proyectos</a></li>
+  <li><a href="/blog/index.html">Blog</a></li>
+  <li><a href="/recursos/index.html">Recursos</a></li>
+  <li><a href="/contacto/index.html">Contacto</a></li>
+  <li>
+    <button class="theme-toggle" aria-label="Cambiar tema"></button>
+  </li>
+</ul>
+
+Si cambias esto en una página, cámbialo en TODAS.
+
+MANTÉN:
+  ✓ El orden de los enlaces
+  ✓ Las rutas exactas
+  ✓ La clase "navbar-menu"
+  ✓ El botón theme-toggle
+
+
+CLASES CSS IMPORTANTES:
+───────────────────────
+
+NO CAMBIES estas clases sin actualizar JavaScript y CSS:
+
+CLASES DE NAVEGACIÓN:
+  .navbar-toggle        → Botón hamburguesa (en JS: navigation.js)
+  .navbar              → Contenedor de barra
+  .navbar-brand        → Logo/marca
+  .navbar-menu         → Menú de navegación
+  .active              → Estado activo de menú (en JS)
+
+CLASES DE TEMA:
+  .theme-toggle        → Botón de cambio de tema (en JS: theme.js)
+
+CLASES DE ANIMACIÓN:
+  .animate-in          → Para animaciones de scroll (en JS: main.js)
+
+Si cambias estas clases en CSS, DEBES cambiarlas también en JavaScript.
+
+
+VARIABLES CSS CRÍTICAS:
+───────────────────────
+
+En main.css hay variables que se usan en TODO el proyecto:
+
+NO ELIMINES:
+  --color-primary
+  --color-secondary
+  --color-accent
+  --color-text
+  --color-background
+  --space-sm
+  --space-md
+  --space-lg
+  - --font-primary
+  --font-size-base
+
+Puedes cambiar sus VALORES, pero no desapariciones.
+
+
+ESTRUCTURA HTML BASE:
+─────────────────────
+
+Cada página HTML DEBE tener:
+
+1. <!DOCTYPE html>
+2. <html lang="es">
+3. <meta charset="UTF-8">
+4. <meta name="viewport" content="width=device-width, initial-scale=1.0">
+5. Los 4 archivos CSS en el <head>:
+   - main.css
+   - layout.css
+   - components.css
+   - responsive.css
+6. Header con navegación (igual en todos)
+7. <main> con contenido
+8. Los 3 scripts JavaScript al final de </body>:
+   - main.js
+   - navigation.js
+   - theme.js
+
+Si falta alguno de estos, el sitio no funcionará correctamente.
+
+
+LINKS A ARCHIVOS DESCARGABLES:
+───────────────────────────────
+
+Si tienes archivos descargables (CV, guías, etc.):
+
+Pasos:
+1. Crea carpeta /assets/docs/  (si no existe)
+2. Copia el archivo allí: /assets/docs/cv.pdf
+3. Usa el link: <a href="/assets/docs/cv.pdf" download>
+
+IMPORTANTE: El atributo download hace que descargue en vez de abrir
+
+
+REDES SOCIALES:
+────────────────
+
+En contacto/index.html hay enlaces a redes sociales:
+
+ACTUALIZA SOLO:
+  - href="https://linkedin.com/in/TU-PERFIL"
+  - href="https://github.com/TU-USUARIO"
+  - href="https://twitter.com/TU-USUARIO"
+  - href="mailto:tu-email@ejemplo.com"
+
+NO CAMBIES:
+  - Las clases de los enlaces
+  - La estructura HTML
+  - Los iconos (si los hay)
+
+
+================================================================================
+9. CÓMO PUBLICAR EL SITIO
+================================================================================
+
+La mejor forma de publicar este sitio estático es usar GITHUB PAGES.
+
+PASO 1: TENER GIT INSTALADO
+────────────────────────────
+
+Verifica en terminal:
+  git --version
+
+Si no lo tienes, descarga desde: https://git-scm.com/
+
+
+PASO 2: CREAR UN REPOSITORIO EN GITHUB
+─────────────────────────────────────────
+
+1. Entra a https://github.com/new
+2. Nombre del repo: "mi-portafolio" (puede ser cualquier nombre)
+3. Descripción: "Portafolio de Ingeniero Estructural"
+4. Selecciona: Public
+5. Clic en "Create repository"
+
+Después de crear, GitHub te mostrará comandos. Mantenlos a mano.
+
+
+PASO 3: INICIALIZAR GIT EN TU PROYECTO
+────────────────────────────────────────
+
+En terminal, en la carpeta del proyecto:
+
+cd c:\Users\AMILCAR\Downloads\paginabolt\project
+
+Luego ejecuta:
+
+git init
+git branch -M main
+git remote add origin https://github.com/TU-USUARIO/mi-portafolio.git
+
+Reemplaza TU-USUARIO con tu usuario de GitHub.
+
+
+PASO 4: AGREGR ARCHIVOS Y HACER PRIMER COMMIT
+────────────────────────────────────────────────
+
+git add .
+git commit -m "Primer commit: sitio web inicial"
+git push -u origin main
+
+Se te pedirá usuario y contraseña de GitHub (usa contraseña o token personal).
+
+
+PASO 5: ACTIVAR GITHUB PAGES
+──────────────────────────────
+
+1. En GitHub, ve a tu repositorio
+2. Entra a Settings → Pages
+3. En "Source", selecciona:
+   - Branch: main
+   - Folder: / (root)
+4. Clic en "Save"
+
+GitHub Pages generará tu sitio. Espera 1-2 minutos.
+
+
+PASO 6: ACCEDER A TU SITIO PUBLICADO
+─────────────────────────────────────
+
+Tu sitio estará disponible en:
+  https://tu-usuario.github.io/mi-portafolio/
+
+Ejemplo:
+  Si tu usuario es "juanperez" y repo es "portafolio-ing":
+  https://juanperez.github.io/portafolio-ing/
+
+
+ACTUALIZAR EL SITIO PUBLICADO (DESPUÉS DE CAMBIOS):
+───────────────────────────────────────────────────
+
+Cada vez que hagas cambios y quieras publicarlos:
+
+1. Abre terminal en la carpeta del proyecto
+2. Ejecuta:
+   git add .
+   git commit -m "Descripción de cambios"
+   git push
+
+En 1-2 minutos, los cambios aparecerán en tu sitio.
+
+
+OPCIONES ALTERNATIVAS DE HOSTING:
+──────────────────────────────────
+
+Además de GitHub Pages, puedes usar:
+
+NETLIFY (Recomendado):
+  1. Ve a https://netlify.com
+  2. Conecta tu repositorio GitHub
+  3. Configuración automática
+  4. Tu sitio se publica automáticamente
+
+VERCEL:
+  1. Ve a https://vercel.com
+  2. Importa tu repositorio GitHub
+  3. Despliegue automático
+  4. Dominio personalizado gratis
+
+GITHUB PAGES CON DOMINIO PERSONALIZADO:
+  Si tienes un dominio:
+  1. En Settings → Pages → Custom domain
+  2. Ingresa tu dominio: ejemplo.com
+  3. Configura DNS en tu registrar
+
+
+USAR TÚ PROPIO SERVIDOR:
+─────────────────────────
+
+Si tienes hosting con FTP:
+
+1. Coloca todos los archivos del proyecto en tu servidor FTP
+2. No necesitas hacer nada más - es sitio estático
+
+Herramientas FTP:
+  - FileZilla (gratuito)
+  - WinSCP (gratuito)
+  - Cyberduck (gratuito)
+
+
+================================================================================
+10. BUENAS PRÁCTICAS PARA MANTENER EL SITIO
+================================================================================
+
+ORGANIZACIÓN Y ESTRUCTURA:
+──────────────────────────
+
+✓ MANTÉN NOMBRES DE CARPETAS Y ARCHIVOS CLAROS:
+  Bueno:  /proyectos/analisis-estructura-edificio/
+  Malo:   /proyectos/proyecto1/
+  
+  Bueno:  perfil-profesional.jpg
+  Malo:   image1.jpg
+
+✓ MANTÉN COHERENCIA:
+  - Usa el mismo formato de títulos en todas partes
+  - Mantén la estructura de carpetas ordenada
+  - Agrupa contenido relacionado
+
+✓ DOCUMENTA TUS CAMBIOS:
+  En terminal, cuando hagas push:
+  git commit -m "Agregar nuevo proyecto: Análisis sísmico"
+  
+  Esto crea un historial de cambios
+
+
+OPTIMIZACIÓN DE IMÁGENES:
+─────────────────────────
+
+❌ NO hagas esto:
+  - Subir imágenes de 5MB (muy pesadas)
+  - Usar imágenes en resolución gigante
+  - Mezclar JPG y PNG sin razón
+
+✓ SÍ haz esto:
+  - JPG para fotos: máximo 200KB
+  - PNG para gráficos: máximo 100KB
+  - Comprime antes: https://tinypng.com/
+  - Redimensiona a tamaños razonables:
+    * Avatar: 400x400px
+    * Proyecto: 800x600px
+    * Blog: 1200x630px
+
+
+MANTÉN NOMBRES DE ARCHIVOS CLAROS:
+───────────────────────────────────
+
+NO hagas esto:
+  - cv1.pdf, cv2.pdf, cv-FINAL.pdf, cv-FINAL-FINAL.pdf
+  - guia (1).docx, guia-nuevo-nombre.docx
+  - codigo.txt, codigo_actualizado.txt, codigo_actual.txt
+
+SÍ haz esto:
+  - cv-2024.pdf
+  - guia-analisis-estructural-v2.pdf
+  - codigo-python-validacion.py
+  - estructura-header-responsive.html
+
+
+EVITA DUPLICACIÓN DE CSS:
+──────────────────────────
+
+NO hagas esto:
+  - Agregar <style> en cada HTML con estilos repetidos
+  - Crear nuevos archivos CSS para cambios pequeños
+  - Copiar estilos en vez de usar variables
+
+SÍ haz esto:
+  - Modifica variables en main.css
+  - Usa las clases existentes en components.css
+  - Si necesitas nuevo CSS, agrunta a responsive.css
+
+
+NO USES ESTILOS INLINE:
+───────────────────────
+
+❌ Evita:
+  <p style="color: red; font-size: 18px;">
+
+✓ Usa clase:
+  HTML: <p class="titulo-principal">
+  CSS: .titulo-principal { color: var(--color-primary); }
+
+
+MANTÉN EL PROYECTO ACTUALIZADO:
+────────────────────────────────
+
+Cada cierto tiempo:
+
+1. Revisa si hay enlaces rotos
+   - Cada nuevo proyecto agrega en el listado
+   - Cada nuevo artículo de blog agrega en el listado
+
+2. Actualiza información desactualizada
+   - Años de experiencia
+   - Trabajos anteriores
+   - Habilidades
+
+3. Limpia archivos innecesarios
+   - Imágenes no usadas
+   - Proyectos antiguos puede archivar
+   - Documents descargables desactualizados
+
+
+TESTING (PRUEBAS):
+─────────────────
+
+Antes de publicar cambios:
+
+1. PRUEBA EN DIFERENTES NAVEGADORES:
+   - Chrome ✓
+   - Firefox ✓
+   - Safari ✓
+   - Edge ✓
+
+2. PRUEBA EN DIFERENTES DISPOSITIVOS:
+   - Móvil (355px ancho)
+   - Tablet (768px ancho)
+   - Desktop (1920px ancho)
+
+3. PRUEBA FUNCIONALIDADES:
+   - ¿El menú se abre/cierra?
+   - ¿El tema claro/oscuro funciona?
+   - ¿Los formularios validan?
+   - ¿Los enlaces van a la página correcta?
+
+4. PRUEBA VELOCIDAD:
+   Usa: https://pagespeed.web.dev/
+   Optimiza si es muy lenta
+
+
+BACUP DEL PROYECTO:
+───────────────────
+
+Guarda respaldos regularmente:
+
+1. USANDO GIT (RECOMENDADO):
+   git push -u origin main
+   
+   Los cambios se guardan automáticamente en GitHub
+
+2. RESPALDO LOCAL:
+   Copia toda la carpeta /project/ a:
+   - Una memoria USB
+   - Disco duro externo
+   - Google Drive
+   - OneDrive
+
+3. RESPALDO EN LA NUBE:
+   Sube a: Google Drive, Dropbox, OneDrive
+
+
+MONITOREO Y ANÁLISIS:
+─────────────────────
+
+Para entender cómo es usado tu sitio:
+
+1. GOOGLE ANALYTICS:
+   - Registrate en https://analytics.google.com
+   - Agrega el código de seguimiento a tu sitio
+   - Desechará visitas, páginas populares, etc.
+
+2. GOOGLE SEARCH CONSOLE:
+   - https://search.google.com/search-console
+   - Indexa tu sitio en Google
+   - Monitorea errores
+
+3. LIGHTHOUSE:
+   - Chrome DevTools → Lighthouse
+   - Obtiene puntuaciones de rendimiento
+   - Sugerencias de mejora
+
+
+SEGURIDAD:
+──────────
+
+✓ RECOMENDACIONES IMPORTANTES:
+
+1. NO subas archivos con datos sensibles
+   - Contraseñas
+   - Tokens
+   - API keys
+   - Información personal
+
+2. USA HTTPS (automático en GitHub Pages)
+
+3. VALIDA FORMULARIOS EN SERVIDOR
+   (Si en algún momento la página obtiene backend)
+
+
+VERSION 1.0 FINAL:
+──────────────────
+
+Consejos para mantener largo plazo:
+
+1. Actualiza bio y experiencia cada 6 meses
+2. Agrega nuevos proyectos cada que terminas uno
+3. Escribe blog posts regularmente
+4. Soluciona errores/links rotos inmediatamente
+5. Mantén el código limpio y bien documentado
+6. Haz respaldos regularmente
+7. Revisa analytics para entender visitantes
+
+
+================================================================================
+11. OBJETIVO Y CONCLUSIÓN
+================================================================================
+
+Este documento INSTRUCCIONES.txt es tu guía completa para:
+
+1. ✓ ENTENDER cómo funciona el proyecto completo
+2. ✓ MODIFICAR contenido de forma segura
+3. ✓ AGREGAR nuevas páginas, proyectos y artículos
+4. ✓ CAMBIAR diseño y colores
+5. ✓ ENTENDER el JavaScript que hace el sitio funcionar
+6. ✓ PUBLICAR el sitio en internet
+7. ✓ MANTENER el sitio en buen estado
+
+ANTES DE HACER CAMBIOS, RECUERDA:
+
+⚠️  Siempre haz respaldo antes de cambios grandes
+⚠️  Prueba cambios en navegador antes de publicar
+⚠️  Mantén la estructura de carpetas
+⚠️  No cambies las clases CSS sin actualizar JS
+⚠️  Usa variables CSS en vez de valores hardcodeados
+
+PRÓXIMOS PASOS:
+
+1. Lee las secciones relevantes según tu necesidad
+2. Sigue los pasos indicados
+3. Prueba en navegador
+4. Si todo funciona, publida con: git push
+5. Si hay problemas, revisa esta guía o vuelve atrás
+
+Cualquier pregunta, consulta dirección por error o busca en Google la solución
+exacta. Las tecnologías HTML, CSS, y JavaScript son estándares web bien
+documentadas.
+
+¡FELICIDADES! Ahora tienes uno de los sitios más profesionales y bien
+documentados. Úsalo para mostrar tu trabajo al mundo. 
+
+================================================================================
+FIN DEL DOCUMENTO DE INSTRUCCIONES
+================================================================================
+
+Versión: 1.0
+Creado: 2026-03-05
+Proyecto: Portafolio Ingeniero Estructural
